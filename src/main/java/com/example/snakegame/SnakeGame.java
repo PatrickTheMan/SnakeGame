@@ -55,7 +55,7 @@ public class SnakeGame extends Application {
             labelMapXTiles.setLayoutX(350);
             labelMapXTiles.setLayoutY(100);
             TextField textFieldMapX = new TextField();
-            textFieldMapX.setText("20");
+            textFieldMapX.setPromptText("10 to 70 (default 20)");
             textFieldMapX.setScaleX(1.5);
             textFieldMapX.setScaleY(1.5);
             textFieldMapX.setLayoutX(150);
@@ -79,7 +79,7 @@ public class SnakeGame extends Application {
             labelMapYTiles.setLayoutX(350);
             labelMapYTiles.setLayoutY(150);
             TextField textFieldMapY = new TextField();
-            textFieldMapY.setText("20");
+            textFieldMapY.setPromptText("10 to 30 (default 20)");
             textFieldMapY.setScaleX(1.5);
             textFieldMapY.setScaleY(1.5);
             textFieldMapY.setLayoutX(150);
@@ -98,8 +98,26 @@ public class SnakeGame extends Application {
 
             buttonStart.setOnAction(actionEvent -> {
                 try {
+                    if (textFieldMapX.getText()==""){
+                        textFieldMapX.setText("20");
+                    } else if (Integer.parseInt(textFieldMapX.getText())>70){
+                        textFieldMapX.setText("70");
+                    } else if (Integer.parseInt(textFieldMapX.getText())<10){
+                        textFieldMapX.setText("10");
+                    }
+
+                    if (textFieldMapY.getText()==""){
+                        textFieldMapY.setText("20");
+                    } else if (Integer.parseInt(textFieldMapY.getText())>30){
+                        textFieldMapY.setText("30");
+                    } else if (Integer.parseInt(textFieldMapY.getText())<10){
+                        textFieldMapY.setText("10");
+                    }
+
                     SceneHandler.setSceneGame(Integer.parseInt(textFieldMapX.getText()),
                             Integer.parseInt(textFieldMapY.getText()));
+
+                    new GameEngine().start();
                 } catch (Exception e){
                     System.out.println("Error: MapX or MapY isn't a number");
                 }

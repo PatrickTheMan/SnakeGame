@@ -4,6 +4,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 
+
 public class SceneHandler {
 
     private static int mapX;
@@ -37,22 +38,32 @@ public class SceneHandler {
 
         scene.setOnKeyPressed(event -> {
             switch (event.getCode()) {
-                case UP:    SnakeHead.setUp(true); break;
-                case DOWN:  SnakeHead.setDown(true); break;
-                case LEFT:  SnakeHead.setRight(true); break;
-                case RIGHT: SnakeHead.setLeft(true); break;
+                case UP:
+                    SnakeHead.setUp(true);
+                    SnakeHead.setDown(false);
+                    SnakeHead.setRight(false);
+                    SnakeHead.setLeft(false);
+                    break;
+                case DOWN:
+                    SnakeHead.setUp(false);
+                    SnakeHead.setDown(true);
+                    SnakeHead.setRight(false);
+                    SnakeHead.setLeft(false);
+                break;
+                case LEFT:
+                    SnakeHead.setUp(false);
+                    SnakeHead.setDown(false);
+                    SnakeHead.setRight(false);
+                    SnakeHead.setLeft(true);
+                break;
+                case RIGHT:
+                    SnakeHead.setUp(false);
+                    SnakeHead.setDown(false);
+                    SnakeHead.setRight(true);
+                    SnakeHead.setLeft(false);
+                break;
             }
         });
-
-        scene.setOnKeyReleased(event -> {
-            switch (event.getCode()) {
-                case UP:    SnakeHead.setUp(false); break;
-                case DOWN:  SnakeHead.setDown(false); break;
-                case LEFT:  SnakeHead.setLeft(false); break;
-                case RIGHT: SnakeHead.setRight(false); break;
-            }
-        });
-
 
 
         SnakeGame.setScene(scene);
