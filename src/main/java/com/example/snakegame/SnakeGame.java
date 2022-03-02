@@ -145,4 +145,11 @@ public class SnakeGame extends Application {
 
     }
 
+    public static void setStageLocation(int x, int y){
+
+        stage.setX(x);
+        stage.setY(y);
+
+    }
+
 }

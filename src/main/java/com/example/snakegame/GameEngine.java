@@ -37,7 +37,7 @@ public class GameEngine extends AnimationTimer {
 
         updateTimer++;
 
-        if (updateTimer==15){
+        if (updateTimer==20){
 
             // Move snake head
             snake.getSnakeHead().moveToNextTile();

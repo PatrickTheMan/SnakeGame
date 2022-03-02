@@ -65,6 +65,7 @@ public class SceneHandler {
             }
         });
 
+        SnakeGame.setStageLocation(1320-mapX*16,520-mapY*16);
 
         SnakeGame.setScene(scene);
 
