@@ -31,6 +31,7 @@ public class GameEngine extends AnimationTimer {
         gameLoop();
     }
 
+
     int updateTimer=0;
 
     private void gameLoop(){
