@@ -20,11 +20,15 @@ public class SnakeHead extends SnakePart {
 
     private static boolean up=false,down=false,right=false,left=false;
 
-    enum dir {
+    public enum dir {
         up,
         down,
         right,
         left
+    }
+
+    public SnakeHead(){
+        setDir(dir.right);
     }
 
     public dir getDir(){
@@ -33,10 +37,36 @@ public class SnakeHead extends SnakePart {
             return dir.up;
         } else if (down){
             return dir.down;
-        } else if (right){
-            return dir.right;
-        } else{
+        } else if (left){
             return dir.left;
+        } else{
+            return dir.right;
+        }
+
+    }
+
+    public static void setDir(Enum input){
+
+        if (input.equals(dir.up)){
+            setUp(true);
+            setDown(false);
+            setRight(false);
+            setLeft(false);
+        } else if (input.equals(dir.down)){
+            SnakeHead.setUp(false);
+            SnakeHead.setDown(true);
+            SnakeHead.setRight(false);
+            SnakeHead.setLeft(false);
+        } else if (input.equals(dir.left)){
+            SnakeHead.setUp(false);
+            SnakeHead.setDown(false);
+            SnakeHead.setRight(false);
+            SnakeHead.setLeft(true);
+        } else if (input.equals(dir.right)){
+            SnakeHead.setUp(false);
+            SnakeHead.setDown(false);
+            SnakeHead.setRight(true);
+            SnakeHead.setLeft(false);
         }
 
     }
@@ -44,15 +74,44 @@ public class SnakeHead extends SnakePart {
     public void moveToNextTile(){
 
         if (getDir()==dir.up){
-            setY(getY()-1);
+            setLocation(getX(),getY()-1);
         } else if (getDir()==dir.down){
-            setY(getY()+1);
+            setLocation(getX(),getY()+1);
         } else if (getDir()==dir.right){
-            setX(getX()+1);
+            setLocation(getX()+1,getY());
         } else if (getDir()==dir.left){
-            setX(getX()-1);
+            setLocation(getX()-1,getY());
         }
 
+    }
+
+    public boolean collisionWallCheck(int mapX, int mapY){
+
+        if (getX()>mapX-1 || getX()<0 || getY()>mapY-1 || getY()<0){
+            return true;
+        }
+
+        return false;
+    }
+
+    public boolean collisionBodyCheck(SnakePart snakePart){
+
+
+
+        if (getX() == snakePart.getX() && getY() == snakePart.getY()){
+            return true;
+        }
+
+        return false;
+    }
+
+    public boolean eatFood(Food food){
+
+        if (getX() == food.getX() && getY() == food.getY()){
+            return true;
+        }
+
+        return false;
     }
 
 

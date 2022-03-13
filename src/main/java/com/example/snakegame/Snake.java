@@ -1,6 +1,9 @@
 package com.example.snakegame;
 
+import javafx.beans.property.Property;
+
 import java.util.ArrayList;
+import java.util.Properties;
 
 public class Snake {
 
@@ -18,18 +21,27 @@ public class Snake {
 
     private ArrayList<SnakePart> snakeParts = new ArrayList<>();
 
-    private SnakeHead snakeHead = new SnakeHead();
+    private SnakeHead snakeHead;
 
-    public void addSnakeHead(){
-        if (snakeParts.size()==0){
-            snakeParts.add(new SnakeHead());
-        } else {
-            System.out.println("Snake Already has a head");
-        }
+    public Snake(){
+        snakeParts.add(new SnakeHead());
+        snakeHead = (SnakeHead) snakeParts.get(0);
     }
 
-    public void addBodyPart(){
-        snakeParts.add(new SnakeBody());
+    public void addSnakeBody(){
+
+        int offSetX;
+
+        if (snakeHead.getDir().equals(SnakeHead.dir.right)){
+            offSetX=1;
+        } else {
+            offSetX=-1;
+        }
+
+        snakeParts.add(new SnakeBody(
+                getSnakeParts().get(getSnakeParts().size()-1).getX()-offSetX,
+                getSnakeParts().get(getSnakeParts().size()-1).getY()
+        ));
     }
 
 
