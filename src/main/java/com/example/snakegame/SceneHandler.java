@@ -461,7 +461,7 @@ public class SceneHandler {
         soundCheck.setSelected(SoundHandler.mute);
         soundCheck.setScaleX(1.5);
         soundCheck.setScaleY(1.5);
-        soundCheck.setLayoutX(142);
+        soundCheck.setLayoutX(141);
         soundCheck.setLayoutY(270);
         pane.getChildren().add(soundCheck);
 

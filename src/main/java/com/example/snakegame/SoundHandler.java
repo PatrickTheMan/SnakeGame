@@ -10,7 +10,7 @@ import java.io.File;
 public class SoundHandler {
 
     public static int masterVolume = 3;
-    public static boolean mute = true;
+    public static boolean mute = false;
 
     public static MediaPlayer gameBackgroundMusic;
 

@@ -8,11 +8,6 @@
     -fx-text-fill: RED;
 }
 
-.outline.label .text{
-    -fx-fill: BLACK;
-    -fx-stroke: firebrick;
-    -fx-stroke-width: 2px;
-}
 
 .button {
     -fx-font-family: 'alagard';
