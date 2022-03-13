@@ -70,7 +70,7 @@ public class GameEngine extends AnimationTimer {
     }
 
     public void speedUp(Snake snake){
-        if (speed!=9 && snake.getSnakeParts().size()%15==0){
+        if (speed!=9 && snake.getSnakeParts().size()%20==0){
             SoundHandler.playSpeedUp();
             speed++;
         }
@@ -78,6 +78,8 @@ public class GameEngine extends AnimationTimer {
 
     int updateTimer=0;
     int speed = 1;
+
+    public static boolean justColor=false;
 
     boolean rotateNow=false;
 
@@ -155,7 +157,12 @@ public class GameEngine extends AnimationTimer {
             }
 
             // Draw function
-            SceneHandler.drawCanvas(snake,food);
+            if (justColor){
+                SceneHandler.drawCanvas(snake,food);
+            } else {
+                SceneHandler.drawCanvasIMG(snake,food);
+            }
+
 
             //Reset Timer
             updateTimer=0;

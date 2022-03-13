@@ -32,6 +32,9 @@ public class SnakeGame extends Application {
 
             stage.show();
 
+            // load images
+            ImageHandler.makeAllVersionsOfImages();
+
             SceneHandler.setSceneMenu();
 
         } catch (Exception e) {

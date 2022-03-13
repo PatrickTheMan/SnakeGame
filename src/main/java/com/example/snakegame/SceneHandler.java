@@ -2,11 +2,17 @@ package com.example.snakegame;
 
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
+import javafx.scene.SnapshotParameters;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.*;
-import javafx.scene.layout.Pane;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Screen;
+
+import java.io.File;
+import java.util.ArrayList;
 
 
 public class SceneHandler {
@@ -55,14 +61,26 @@ public class SceneHandler {
 
     public static void setSceneMenu(){
 
+        // The root
         Pane pane = new Pane();
+
+        // Set the background
+        pane.setBackground(ImageHandler.getBackground(0));
+
+
+
+        scene = new Scene(pane,420,400);
+
+        scene.getStylesheets().add(new File("src/main/resources/fontstyle.css").toURI().toString());
+
+
 
         Label label = new Label();
         label.setText("Snake4Ever");
-        label.setStyle("-fx-font-weight: bold");
         label.setScaleX(2);
         label.setScaleY(2);
-        label.setLayoutX(180);
+        label.setStyle("-fx-font-size: 20");
+        label.setLayoutX(160);
         label.setLayoutY(25);
         pane.getChildren().add(label);
 
@@ -174,9 +192,6 @@ public class SceneHandler {
         pane.getChildren().add(buttonExit);
 
 
-
-        scene = new Scene(pane,420,400);
-
         SnakeGame.setScene(scene);
 
         setSceneLocation(false);
@@ -195,12 +210,20 @@ public class SceneHandler {
 
         Pane pane = new Pane();
 
+        // Set the background
+        pane.setBackground(ImageHandler.getBackground(1));
+
+        scene = new Scene(pane,420,400);
+
+        scene.getStylesheets().add(new File("src/main/resources/fontstyle.css").toURI().toString());
+
         Label label = new Label();
         label.setText("Leaderboard");
         label.setStyle("-fx-font-weight: bold");
+        label.setStyle("-fx-font-size: 15");
         label.setScaleX(2);
         label.setScaleY(2);
-        label.setLayoutX(175);
+        label.setLayoutX(165);
         label.setLayoutY(25);
         pane.getChildren().add(label);
 
@@ -314,8 +337,6 @@ public class SceneHandler {
 
         setSceneLocation(false);
 
-        scene = new Scene(pane,420,400);
-
         SnakeGame.setScene(scene);
 
     }
@@ -330,13 +351,23 @@ public class SceneHandler {
         // The Root
         Pane pane = new Pane();
 
+        // Set the background
+        pane.setBackground(ImageHandler.getBackground(2));
+
+        // The scene is made with the root
+        Scene scene = new Scene(pane, 420,400);
+
+        // Set stylesheet
+        scene.getStylesheets().add(new File("src/main/resources/fontstyle.css").toURI().toString());
+
         // The header
         Label label = new Label();
         label.setText("Settings");
         label.setStyle("-fx-font-weight: bold");
+        label.setStyle("-fx-font-size: 15");
         label.setScaleX(2);
         label.setScaleY(2);
-        label.setLayoutX(190);
+        label.setLayoutX(175);
         label.setLayoutY(25);
         pane.getChildren().add(label);
 
@@ -346,21 +377,23 @@ public class SceneHandler {
         labelMapX.setStyle("-fx-font-weight: bold");
         labelMapX.setScaleX(1.5);
         labelMapX.setScaleY(1.5);
-        labelMapX.setLayoutX(50);
-        labelMapX.setLayoutY(100);
+        labelMapX.setStyle("-fx-font-size: 13");
+        labelMapX.setLayoutX(60);
+        labelMapX.setLayoutY(90);
         Label labelMapXTiles = new Label();
         labelMapXTiles.setText("Tiles");
         labelMapXTiles.setScaleX(1.5);
         labelMapXTiles.setScaleY(1.5);
-        labelMapXTiles.setLayoutX(350);
-        labelMapXTiles.setLayoutY(100);
+        labelMapXTiles.setStyle("-fx-font-size: 10");
+        labelMapXTiles.setLayoutX(320);
+        labelMapXTiles.setLayoutY(95);
         TextField textFieldMapX = new TextField();
-        textFieldMapX.setPromptText("10 to 70 (default 20)");
+        textFieldMapX.setPromptText("10 to 55 (default 20)");
         textFieldMapX.setText(""+mapX);
         textFieldMapX.setScaleX(1.5);
         textFieldMapX.setScaleY(1.5);
         textFieldMapX.setLayoutX(150);
-        textFieldMapX.setLayoutY(100);
+        textFieldMapX.setLayoutY(90);
         pane.getChildren().add(labelMapX);
         pane.getChildren().add(labelMapXTiles);
         pane.getChildren().add(textFieldMapX);
@@ -371,21 +404,23 @@ public class SceneHandler {
         labelMapY.setStyle("-fx-font-weight: bold");
         labelMapY.setScaleX(1.5);
         labelMapY.setScaleY(1.5);
-        labelMapY.setLayoutX(50);
-        labelMapY.setLayoutY(150);
+        labelMapY.setStyle("-fx-font-size: 13");
+        labelMapY.setLayoutX(60);
+        labelMapY.setLayoutY(130);
         Label labelMapYTiles = new Label();
         labelMapYTiles.setText("Tiles");
         labelMapYTiles.setScaleX(1.5);
         labelMapYTiles.setScaleY(1.5);
-        labelMapYTiles.setLayoutX(350);
-        labelMapYTiles.setLayoutY(150);
+        labelMapYTiles.setStyle("-fx-font-size: 10");
+        labelMapYTiles.setLayoutX(320);
+        labelMapYTiles.setLayoutY(135);
         TextField textFieldMapY = new TextField();
         textFieldMapY.setPromptText("10 to 30 (default 20)");
         textFieldMapY.setText(""+mapY);
         textFieldMapY.setScaleX(1.5);
         textFieldMapY.setScaleY(1.5);
         textFieldMapY.setLayoutX(150);
-        textFieldMapY.setLayoutY(150);
+        textFieldMapY.setLayoutY(130);
         pane.getChildren().add(labelMapY);
         pane.getChildren().add(labelMapYTiles);
         pane.getChildren().add(textFieldMapY);
@@ -397,7 +432,7 @@ public class SceneHandler {
         powerUpCheck.setScaleX(1.5);
         powerUpCheck.setScaleY(1.5);
         powerUpCheck.setLayoutX(138);
-        powerUpCheck.setLayoutY(220);
+        powerUpCheck.setLayoutY(180);
         pane.getChildren().add(powerUpCheck);
 
         // The buttonControl option
@@ -407,8 +442,18 @@ public class SceneHandler {
         fourButtonControlCheck.setScaleX(1.5);
         fourButtonControlCheck.setScaleY(1.5);
         fourButtonControlCheck.setLayoutX(150);
-        fourButtonControlCheck.setLayoutY(250);
+        fourButtonControlCheck.setLayoutY(210);
         pane.getChildren().add(fourButtonControlCheck);
+
+        // The colorOnly option
+        CheckBox colorOnlyCheck = new CheckBox();
+        colorOnlyCheck.setText("Color Only");
+        colorOnlyCheck.setSelected(GameEngine.justColor);
+        colorOnlyCheck.setScaleX(1.5);
+        colorOnlyCheck.setScaleY(1.5);
+        colorOnlyCheck.setLayoutX(138);
+        colorOnlyCheck.setLayoutY(240);
+        pane.getChildren().add(colorOnlyCheck);
 
         // The soundOn option
         CheckBox soundCheck = new CheckBox();
@@ -417,7 +462,7 @@ public class SceneHandler {
         soundCheck.setScaleX(1.5);
         soundCheck.setScaleY(1.5);
         soundCheck.setLayoutX(142);
-        soundCheck.setLayoutY(280);
+        soundCheck.setLayoutY(270);
         pane.getChildren().add(soundCheck);
 
 
@@ -436,8 +481,8 @@ public class SceneHandler {
                 // Test value in textfieldmapx
                 if (textFieldMapX.getText()==""){
                     textFieldMapX.setText("20");
-                } else if (Integer.parseInt(textFieldMapX.getText())>70){
-                    textFieldMapX.setText("70");
+                } else if (Integer.parseInt(textFieldMapX.getText())>55){
+                    textFieldMapX.setText("55");
                 } else if (Integer.parseInt(textFieldMapX.getText())<10){
                     textFieldMapX.setText("10");
                 }
@@ -456,6 +501,9 @@ public class SceneHandler {
 
                 // Set boolean to the users chosen value for wether or not the powerups are there
                 GameEngine.powerUpEnabled = fourButtonControlCheck.isSelected();
+
+                // Set boolean to the users chosen value for wether or not it is just color mode
+                GameEngine.justColor = colorOnlyCheck.isSelected();
 
                 // Set boolean to the users chosen value for the mute sound
                 SoundHandler.mute = soundCheck.isSelected();
@@ -487,9 +535,6 @@ public class SceneHandler {
         });
 
         pane.getChildren().add(buttonSaveBack);
-
-        // The scene is made with the root
-        Scene scene = new Scene(pane, 420,400);
 
         // The current scene is changed to the new one
         SnakeGame.setScene(scene);
@@ -530,12 +575,21 @@ public class SceneHandler {
 
         Pane pane = new Pane();
 
+        // Set the background
+        pane.setBackground(ImageHandler.getBackground(3));
+
+        scene = new Scene(pane,420,400);
+
+        // Set stylesheet
+        scene.getStylesheets().add(new File("src/main/resources/fontstyle.css").toURI().toString());
+
         Label label = new Label();
         label.setText("Game Over");
         label.setStyle("-fx-font-weight: bold");
+        label.setStyle("-fx-font-size: 15");
         label.setScaleX(2);
         label.setScaleY(2);
-        label.setLayoutX(180);
+        label.setLayoutX(170);
         label.setLayoutY(25);
         pane.getChildren().add(label);
 
@@ -670,8 +724,6 @@ public class SceneHandler {
 
         setSceneLocation(false);
 
-        scene = new Scene(pane,420,400);
-
         SnakeGame.setScene(scene);
 
 
@@ -714,22 +766,22 @@ public class SceneHandler {
                 switch (event.getCode()) {
                     case UP:
                         if (!snake.getSnakeHead().getDir().equals(SnakeHead.dir.down) && !input){
-                            SnakeHead.setDir(SnakeHead.dir.up);
+                            snake.getSnakeHead().setDir(SnakeHead.dir.up);
                         }
                         break;
                     case DOWN:
                         if (!snake.getSnakeHead().getDir().equals(SnakeHead.dir.up) && !input){
-                            SnakeHead.setDir(SnakeHead.dir.down);
+                            snake.getSnakeHead().setDir(SnakeHead.dir.down);
                         }
                         break;
                     case LEFT:
                         if (!snake.getSnakeHead().getDir().equals(SnakeHead.dir.right) && !input){
-                            SnakeHead.setDir(SnakeHead.dir.left);
+                            snake.getSnakeHead().setDir(SnakeHead.dir.left);
                         }
                         break;
                     case RIGHT:
                         if (!snake.getSnakeHead().getDir().equals(SnakeHead.dir.left) && !input){
-                            SnakeHead.setDir(SnakeHead.dir.right);
+                            snake.getSnakeHead().setDir(SnakeHead.dir.right);
                         }
                         break;
                     case B:
@@ -745,16 +797,16 @@ public class SceneHandler {
                         if (!input){
                             switch (snake.getSnakeHead().getDir()){
                                 case up:
-                                    SnakeHead.setDir(SnakeHead.dir.left);
+                                    snake.getSnakeHead().setDir(SnakeHead.dir.left);
                                     break;
                                 case down:
-                                    SnakeHead.setDir(SnakeHead.dir.right);
+                                    snake.getSnakeHead().setDir(SnakeHead.dir.right);
                                     break;
                                 case right:
-                                    SnakeHead.setDir(SnakeHead.dir.up);
+                                    snake.getSnakeHead().setDir(SnakeHead.dir.up);
                                     break;
                                 case left:
-                                    SnakeHead.setDir(SnakeHead.dir.down);
+                                    snake.getSnakeHead().setDir(SnakeHead.dir.down);
                                     break;
                             }
 
@@ -765,16 +817,16 @@ public class SceneHandler {
                         if (!input){
                             switch (snake.getSnakeHead().getDir()){
                                 case up:
-                                    SnakeHead.setDir(SnakeHead.dir.right);
+                                    snake.getSnakeHead().setDir(SnakeHead.dir.right);
                                     break;
                                 case down:
-                                    SnakeHead.setDir(SnakeHead.dir.left);
+                                    snake.getSnakeHead().setDir(SnakeHead.dir.left);
                                     break;
                                 case right:
-                                    SnakeHead.setDir(SnakeHead.dir.down);
+                                    snake.getSnakeHead().setDir(SnakeHead.dir.down);
                                     break;
                                 case left:
-                                    SnakeHead.setDir(SnakeHead.dir.up);
+                                    snake.getSnakeHead().setDir(SnakeHead.dir.up);
                                     break;
                             }
 
@@ -785,6 +837,10 @@ public class SceneHandler {
             });
         }
     }
+
+    //endregion
+
+    //region [Draw Canvas]
 
     public static void drawCanvas(Snake snake, Food food){
 
@@ -802,6 +858,26 @@ public class SceneHandler {
 
         canvas.getGraphicsContext2D().setFill(Color.WHITE);
         canvas.getGraphicsContext2D().fillRect(snake.getSnakeHead().getX()*tileSize,snake.getSnakeHead().getY()*tileSize,tileSize,tileSize);
+
+    }
+
+    public static void drawCanvasIMG(Snake snake, Food food){
+
+
+        // Clear the screen
+        canvas.getGraphicsContext2D().drawImage(ImageHandler.getMapImg(),0,0);
+
+
+        canvas.getGraphicsContext2D().drawImage(ImageHandler.getFoodImg(food.getColor()),food.getX()*tileSize,food.getY()*tileSize);
+
+        for (int i = 1; i<snake.getSnakeParts().size();i++){
+
+            canvas.getGraphicsContext2D().drawImage(ImageHandler.matchDirImg(snake,i),
+                    snake.getSnakeParts().get(i).getX()*tileSize,
+                    snake.getSnakeParts().get(i).getY()*tileSize, tileSize,tileSize);
+        }
+
+        canvas.getGraphicsContext2D().drawImage(ImageHandler.matchDirImg(snake,0),snake.getSnakeHead().getX()*tileSize,snake.getSnakeHead().getY()*tileSize);
 
     }
 

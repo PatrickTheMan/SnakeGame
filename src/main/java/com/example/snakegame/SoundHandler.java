@@ -26,7 +26,7 @@ public class SoundHandler {
 
     public static void startGameBackgroundMusic(){
         if (gameBackgroundMusic == null){
-            Media sound = new Media(new File("src/main/resources/Arcade-Oddities.mp3").toURI().toString());
+            Media sound = new Media(new File("src/main/resources/Sound/Arcade-Oddities.mp3").toURI().toString());
 
             gameBackgroundMusic = new MediaPlayer(sound);
 
@@ -57,7 +57,7 @@ public class SoundHandler {
     public static void startMenuBackgroundMusic(){
 
         if (menuBackgroundMusic == null){
-            Media sound = new Media(new File("src/main/resources/Pixel-Madness.mp3").toURI().toString());
+            Media sound = new Media(new File("src/main/resources/Sound/Pixel-Madness.mp3").toURI().toString());
 
             menuBackgroundMusic = new MediaPlayer(sound);
 
@@ -89,7 +89,7 @@ public class SoundHandler {
     public static void startDeadBackgroundMusic(){
 
         if (deadBackgroundMusic == null){
-            Media sound = new Media(new File("src/main/resources/After-the-Invasion_Looping.mp3").toURI().toString());
+            Media sound = new Media(new File("src/main/resources/Sound/After-the-Invasion_Looping.mp3").toURI().toString());
 
             deadBackgroundMusic = new MediaPlayer(sound);
 
@@ -110,14 +110,14 @@ public class SoundHandler {
 
     public static void playFoodSound(Color color){
 
-        Media sound = new Media(new File("src/main/resources/PowerUp16 cut.mp3").toURI().toString());
+        Media sound = new Media(new File("src/main/resources/Sound/PowerUp16 cut.mp3").toURI().toString());
 
         foodSound = new MediaPlayer(sound);
 
         foodSound.setVolume(0.015 * masterVolume);
 
         if (color.equals(Color.BLUE)){
-            sound = new Media(new File("src/main/resources/Creepy4.mp3").toURI().toString());
+            sound = new Media(new File("src/main/resources/Sound/Creepy4.mp3").toURI().toString());
 
             foodSound = new MediaPlayer(sound);
 
@@ -136,7 +136,7 @@ public class SoundHandler {
 
     public static void playCollisionSound(){
 
-        Media sound = new Media(new File("src/main/resources/SynthChime3.mp3").toURI().toString());
+        Media sound = new Media(new File("src/main/resources/Sound/SynthChime3.mp3").toURI().toString());
 
         collisionSound = new MediaPlayer(sound);
 
@@ -153,7 +153,7 @@ public class SoundHandler {
 
     public static void playSpeedUp(){
 
-        Media sound = new Media(new File("src/main/resources/Bells4.mp3").toURI().toString());
+        Media sound = new Media(new File("src/main/resources/Sound/Bells4.mp3").toURI().toString());
 
         speedUpSound = new MediaPlayer(sound);
 
@@ -170,7 +170,7 @@ public class SoundHandler {
 
     public static void playButtonSound(){
 
-        Media sound = new Media(new File("src/main/resources/RezAlert1.mp3").toURI().toString());
+        Media sound = new Media(new File("src/main/resources/Sound/RezAlert1.mp3").toURI().toString());
 
         buttonSound = new MediaPlayer(sound);
 

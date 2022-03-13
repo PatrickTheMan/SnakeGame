@@ -1,0 +1,45 @@
+@font-face {
+    font-family: 'alagard';
+    src: url('Font/alagard.ttf');
+}
+
+.label {
+    -fx-font-family: 'alagard';
+    -fx-text-fill: RED;
+}
+
+.outline.label .text{
+    -fx-fill: BLACK;
+    -fx-stroke: firebrick;
+    -fx-stroke-width: 2px;
+}
+
+.button {
+    -fx-font-family: 'alagard';
+    -fx-text-fill: RED;
+
+    -fx-border-color: RED;
+    -fx-border-width: 0.5;
+
+}
+
+.check-box {
+    -fx-font-family: 'alagard';
+    -fx-text-fill: RED;
+}
+
+.text-field {
+    -fx-font-family: 'alagard';
+    -fx-text-fill: BLACK;
+
+    -fx-border-color: RED;
+    -fx-border-width: 0.5;
+}
+
+.table-view {
+    -fx-font-family: 'alagard';
+    -fx-text-fill: BLACK;
+
+    -fx-border-color: BLACK;
+    -fx-border-width: 1;
+}

@@ -13,26 +13,43 @@ public class PowerUpHandler {
             case 0:
 
                 // Flipping x
-                snake.getSnakeHead().setLocation(mapX-1-snake.getSnakeHead().getX(),snake.getSnakeHead().getY());
+
+                ImageHandler.rotateMap(90);
 
                 switch (snake.getSnakeHead().getDir()){
                     case up:
-                        snake.getSnakeHead().setDir(SnakeHead.dir.up);
+                        snake.getSnakeHead().setLocation(mapX-1-snake.getSnakeHead().getX(),snake.getSnakeHead().getY(), SnakePart.dir.up);
                         break;
                     case down:
-                        snake.getSnakeHead().setDir(SnakeHead.dir.down);
+                        snake.getSnakeHead().setLocation(mapX-1-snake.getSnakeHead().getX(),snake.getSnakeHead().getY(), SnakePart.dir.down);
                         break;
                     case right:
-                        snake.getSnakeHead().setDir(SnakeHead.dir.left);
+                        snake.getSnakeHead().setLocation(mapX-1-snake.getSnakeHead().getX(),snake.getSnakeHead().getY(), SnakePart.dir.left);
                         break;
                     case left:
-                        snake.getSnakeHead().setDir(SnakeHead.dir.right);
+                        snake.getSnakeHead().setLocation(mapX-1-snake.getSnakeHead().getX(),snake.getSnakeHead().getY(), SnakePart.dir.right);
                         break;
                 }
 
                 for (int i = 1; i<snake.getSnakeParts().size();i++){
 
-                    snake.getSnakeParts().get(i).setLocation(mapX-1-snake.getSnakeParts().get(i).getX(),snake.getSnakeParts().get(i).getY());
+                    SnakePart snakePart = snake.getSnakeParts().get(i);
+
+                    switch (snakePart.getDir()){
+                        case up:
+                            snakePart.setLocation(mapX-1-snakePart.getX(),snakePart.getY(), SnakePart.dir.up);
+                            break;
+                        case down:
+                            snakePart.setLocation(mapX-1-snakePart.getX(),snakePart.getY(), SnakePart.dir.down);
+                            break;
+                        case right:
+                            snakePart.setLocation(mapX-1-snakePart.getX(),snakePart.getY(), SnakePart.dir.left);
+                            break;
+                        case left:
+                            snakePart.setLocation(mapX-1-snakePart.getX(),snakePart.getY(), SnakePart.dir.right);
+                            break;
+                    }
+
                 }
 
                 food.setLocation(mapX-1-food.getX(),food.getY());
@@ -41,26 +58,43 @@ public class PowerUpHandler {
             case 1:
 
                 // Flipping y
-                snake.getSnakeHead().setLocation(snake.getSnakeHead().getX(),mapY-1-snake.getSnakeHead().getY());
+
+                ImageHandler.rotateMap(180);
 
                 switch (snake.getSnakeHead().getDir()){
                     case up:
-                        snake.getSnakeHead().setDir(SnakeHead.dir.down);
+                        snake.getSnakeHead().setLocation(snake.getSnakeHead().getX(),mapY-1-snake.getSnakeHead().getY(), SnakePart.dir.down);
                         break;
                     case down:
-                        snake.getSnakeHead().setDir(SnakeHead.dir.up);
+                        snake.getSnakeHead().setLocation(snake.getSnakeHead().getX(),mapY-1-snake.getSnakeHead().getY(), SnakePart.dir.up);
                         break;
                     case right:
-                        snake.getSnakeHead().setDir(SnakeHead.dir.right);
+                        snake.getSnakeHead().setLocation(snake.getSnakeHead().getX(),mapY-1-snake.getSnakeHead().getY(), SnakePart.dir.right);
                         break;
                     case left:
-                        snake.getSnakeHead().setDir(SnakeHead.dir.left);
+                        snake.getSnakeHead().setLocation(snake.getSnakeHead().getX(),mapY-1-snake.getSnakeHead().getY(), SnakePart.dir.left);
                         break;
                 }
 
                 for (int i = 1; i<snake.getSnakeParts().size();i++){
 
-                    snake.getSnakeParts().get(i).setLocation(snake.getSnakeParts().get(i).getX(),mapY-1-snake.getSnakeParts().get(i).getY());
+                    SnakePart snakePart = snake.getSnakeParts().get(i);
+
+                    switch (snakePart.getDir()){
+                        case up:
+                            snakePart.setLocation(snakePart.getX(),mapY-1- snakePart.getY(), SnakePart.dir.down);
+                            break;
+                        case down:
+                            snakePart.setLocation(snakePart.getX(),mapY-1- snakePart.getY(), SnakePart.dir.up);
+                            break;
+                        case right:
+                            snakePart.setLocation(snakePart.getX(),mapY-1- snakePart.getY(), SnakePart.dir.right);
+                            break;
+                        case left:
+                            snakePart.setLocation(snakePart.getX(),mapY-1- snakePart.getY(), SnakePart.dir.left);
+                            break;
+                    }
+
                 }
 
                 food.setLocation(food.getX(),mapY-1-food.getY());
@@ -69,26 +103,43 @@ public class PowerUpHandler {
             case 2:
 
                 // Flipping x and y
-                snake.getSnakeHead().setLocation(mapX-1-snake.getSnakeHead().getX(),mapY-1-snake.getSnakeHead().getY());
+
+                ImageHandler.rotateMap(270);
 
                 switch (snake.getSnakeHead().getDir()){
                     case up:
-                        snake.getSnakeHead().setDir(SnakeHead.dir.down);
+                        snake.getSnakeHead().setLocation(mapX-1-snake.getSnakeHead().getX(),mapY-1-snake.getSnakeHead().getY(), SnakePart.dir.down);
                         break;
                     case down:
-                        snake.getSnakeHead().setDir(SnakeHead.dir.up);
+                        snake.getSnakeHead().setLocation(mapX-1-snake.getSnakeHead().getX(),mapY-1-snake.getSnakeHead().getY(), SnakePart.dir.up);
                         break;
                     case right:
-                        snake.getSnakeHead().setDir(SnakeHead.dir.left);
+                        snake.getSnakeHead().setLocation(mapX-1-snake.getSnakeHead().getX(),mapY-1-snake.getSnakeHead().getY(), SnakePart.dir.left);
                         break;
                     case left:
-                        snake.getSnakeHead().setDir(SnakeHead.dir.right);
+                        snake.getSnakeHead().setLocation(mapX-1-snake.getSnakeHead().getX(),mapY-1-snake.getSnakeHead().getY(), SnakePart.dir.right);
                         break;
                 }
 
                 for (int i = 1; i<snake.getSnakeParts().size();i++){
 
-                    snake.getSnakeParts().get(i).setLocation(mapX-1-snake.getSnakeParts().get(i).getX(),mapY-1-snake.getSnakeParts().get(i).getY());
+                    SnakePart snakePart = snake.getSnakeParts().get(i);
+
+                    switch (snakePart.getDir()){
+                        case up:
+                            snakePart.setLocation(mapX-1- snakePart.getX(),mapY-1- snakePart.getY(), SnakePart.dir.down);
+                            break;
+                        case down:
+                            snakePart.setLocation(mapX-1- snakePart.getX(),mapY-1- snakePart.getY(), SnakePart.dir.up);
+                            break;
+                        case right:
+                            snakePart.setLocation(mapX-1- snakePart.getX(),mapY-1- snakePart.getY(), SnakePart.dir.left);
+                            break;
+                        case left:
+                            snakePart.setLocation(mapX-1- snakePart.getX(),mapY-1- snakePart.getY(), SnakePart.dir.right);
+                            break;
+                    }
+
                 }
 
                 food.setLocation(mapX-1-food.getX(),mapY-1-food.getY());

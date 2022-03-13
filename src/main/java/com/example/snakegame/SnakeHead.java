@@ -2,73 +2,8 @@ package com.example.snakegame;
 
 public class SnakeHead extends SnakePart {
 
-    public static void setUp(boolean up) {
-        SnakeHead.up = up;
-    }
-
-    public static void setDown(boolean down) {
-        SnakeHead.down = down;
-    }
-
-    public static void setRight(boolean right) {
-        SnakeHead.right = right;
-    }
-
-    public static void setLeft(boolean left) {
-        SnakeHead.left = left;
-    }
-
-    private static boolean up=false,down=false,right=false,left=false;
-
-    public enum dir {
-        up,
-        down,
-        right,
-        left
-    }
-
     public SnakeHead(){
         setDir(dir.right);
-    }
-
-    public dir getDir(){
-
-        if (up){
-            return dir.up;
-        } else if (down){
-            return dir.down;
-        } else if (left){
-            return dir.left;
-        } else{
-            return dir.right;
-        }
-
-    }
-
-    public static void setDir(Enum input){
-
-        if (input.equals(dir.up)){
-            setUp(true);
-            setDown(false);
-            setRight(false);
-            setLeft(false);
-        } else if (input.equals(dir.down)){
-            SnakeHead.setUp(false);
-            SnakeHead.setDown(true);
-            SnakeHead.setRight(false);
-            SnakeHead.setLeft(false);
-        } else if (input.equals(dir.left)){
-            SnakeHead.setUp(false);
-            SnakeHead.setDown(false);
-            SnakeHead.setRight(false);
-            SnakeHead.setLeft(true);
-        } else if (input.equals(dir.right)){
-            SnakeHead.setUp(false);
-            SnakeHead.setDown(false);
-            SnakeHead.setRight(true);
-            SnakeHead.setLeft(false);
-        }
-
     }
 
     public void moveToNextTile(){

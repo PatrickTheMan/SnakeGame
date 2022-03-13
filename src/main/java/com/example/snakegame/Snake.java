@@ -11,10 +11,6 @@ public class Snake {
         return snakeParts;
     }
 
-    public void setSnakeParts(ArrayList<SnakePart> snakeParts) {
-        this.snakeParts = snakeParts;
-    }
-
     public SnakeHead getSnakeHead() {
         return snakeHead;
     }
@@ -30,17 +26,28 @@ public class Snake {
 
     public void addSnakeBody(){
 
-        int offSetX;
+        int offSetX=0;
+        int offSetY=0;
 
-        if (snakeHead.getDir().equals(SnakeHead.dir.right)){
-            offSetX=1;
-        } else {
-            offSetX=-1;
+        switch (snakeParts.get(snakeParts.size()-1).getDir()){
+            case up:
+                offSetY=1;
+                break;
+            case down:
+                offSetY=-1;
+                break;
+            case right:
+                offSetX=-1;
+                break;
+            case left:
+                offSetX=1;
+                break;
         }
 
         snakeParts.add(new SnakeBody(
-                getSnakeParts().get(getSnakeParts().size()-1).getX()-offSetX,
-                getSnakeParts().get(getSnakeParts().size()-1).getY()
+                getSnakeParts().get(getSnakeParts().size()-1).getX()+offSetX,
+                getSnakeParts().get(getSnakeParts().size()-1).getY()+offSetY,
+                getSnakeParts().get(getSnakeParts().size()-1).getDir()
         ));
     }
 
