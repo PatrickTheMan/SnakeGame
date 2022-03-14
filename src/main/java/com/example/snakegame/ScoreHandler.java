@@ -91,16 +91,22 @@ public class ScoreHandler {
 
                 if (scan.equals(username) && !foundScore){
 
+                    System.out.println(scan);
+
                     lines.add(scan);
 
                     scan = scanner.nextLine();
 
                     if (scan.equals(""+score)){
 
+                        System.out.println(scan);
+
                         lines.remove(lines.size()-1);
 
                         foundScore=true;
 
+                    } else {
+                        lines.add(scan);
                     }
                 } else {
                     lines.add(scan);
