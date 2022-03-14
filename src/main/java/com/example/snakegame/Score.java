@@ -2,16 +2,7 @@ package com.example.snakegame;
 
 public class Score {
 
-    private String username = null;
-    private int score = 0;
-
-    public Score() {
-    }
-
-    public Score(String username, int score) {
-        this.username = username;
-        this.score = score;
-    }
+   //region [Getter & Setters]
 
     public String getUsername() {
         return username;
@@ -28,5 +19,26 @@ public class Score {
     public void setScore(int score) {
         this.score = score;
     }
+
+   //endregion
+
+    //region [Variables]
+
+    private String username = null;
+    private int score = 0;
+
+    //endregion
+
+    //region [Constructors]
+
+    public Score() {
+    }
+
+    public Score(String username, int score) {
+        this.username = username;
+        this.score = score;
+    }
+
+    //endregion
 
 }

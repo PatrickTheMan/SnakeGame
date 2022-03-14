@@ -2,6 +2,8 @@ package com.example.snakegame;
 
 public class SnakePart {
 
+    //region [Getters & Setters]
+
     public int getX() {
         return x;
     }
@@ -21,9 +23,6 @@ public class SnakePart {
         this.y = y;
     }
 
-    private int x;
-    private int y;
-
     public void setUp(boolean up) {
         this.up = up;
     }
@@ -38,15 +37,6 @@ public class SnakePart {
 
     public void setLeft(boolean left) {
         this.left = left;
-    }
-
-    private boolean up=false,down=false,right=false,left=false;
-
-    public enum dir {
-        up,
-        down,
-        right,
-        left
     }
 
     public void setDir(Enum input){
@@ -88,5 +78,27 @@ public class SnakePart {
         }
 
     }
+
+    //endregion
+
+    //region [Class variables]
+
+    private int x;
+    private int y;
+
+    private boolean up=false,down=false,right=false,left=false;
+
+    //endregion
+
+    //region [Enum Dir]
+
+    public enum dir {
+        up,
+        down,
+        right,
+        left
+    }
+
+    //endregion
 
 }

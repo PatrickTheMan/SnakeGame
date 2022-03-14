@@ -2,20 +2,27 @@ package com.example.snakegame;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 
 public class SnakeGame extends Application {
 
+    //region [Class variables]
+
     private static Stage stage;
+
+    //endregion
+
+    //region [Main Method]
 
     public static void main(String[] args) {
         launch();
     }
 
+    //endregion
+
+    //region [Start Method]
 
     @Override
     public void start(Stage primaryStage) {
@@ -42,6 +49,10 @@ public class SnakeGame extends Application {
         }
     }
 
+    //endregion
+
+    //region [Set (Stage/Scene) Methods]
+
     public static void setScene(Scene scene){
 
         stage.setScene(scene);
@@ -54,5 +65,7 @@ public class SnakeGame extends Application {
         stage.setY(y);
 
     }
+
+    //endregion
 
 }

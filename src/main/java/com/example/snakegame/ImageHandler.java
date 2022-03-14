@@ -11,6 +11,8 @@ import java.util.ArrayList;
 
 public class ImageHandler {
 
+    //region [Getters & Setters]
+
     public static ArrayList<Image> getFoodCollection() {
         return foodCollection;
     }
@@ -19,11 +21,22 @@ public class ImageHandler {
         return snakeNormalCollection;
     }
 
+    public static Image getMapImg(){
+        return mapImg;
+    }
+
+    //endregion
+
+    //region [Class variables]
+
     private static Image mapImg = null;
     private static ArrayList<Image> backgroundMenu = new ArrayList<>();
     private static ArrayList<Image> foodCollection = new ArrayList<>();
     private static ArrayList<Image> snakeNormalCollection = new ArrayList<>();
 
+    //endregion
+
+    //region [Load Method]
 
     public static void makeAllVersionsOfImages(){
 
@@ -92,6 +105,10 @@ public class ImageHandler {
 
     }
 
+    //endregion
+
+    //region [Background Methods]
+
     public static Background getBackground(int num){
 
         BackgroundImage backgroundImage =
@@ -117,9 +134,9 @@ public class ImageHandler {
 
     }
 
-    public static Image getMapImg(){
-        return mapImg;
-    }
+    //endregion
+
+    //region [Food Methods]
 
     public static Image getFoodImg(Color color){
 
@@ -133,6 +150,10 @@ public class ImageHandler {
 
         return img;
     }
+
+    //endregion
+
+    //region [Get Img Method]
 
     public static Image matchDirImg(Snake snake, int location){
 
@@ -187,5 +208,7 @@ public class ImageHandler {
 
         return img;
     }
+
+    //endregion
 
 }

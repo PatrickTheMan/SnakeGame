@@ -1,11 +1,10 @@
 package com.example.snakegame;
 
-import javafx.beans.property.Property;
-
 import java.util.ArrayList;
-import java.util.Properties;
 
 public class Snake {
+
+    //region [Class variable]
 
     public ArrayList<SnakePart> getSnakeParts() {
         return snakeParts;
@@ -19,10 +18,18 @@ public class Snake {
 
     private SnakeHead snakeHead;
 
+    //endregion
+
+    //region [Constructor]
+
     public Snake(){
         snakeParts.add(new SnakeHead());
         snakeHead = (SnakeHead) snakeParts.get(0);
     }
+
+    //endregion
+
+    //region [Add snake body Method]
 
     public void addSnakeBody(){
 
@@ -51,7 +58,6 @@ public class Snake {
         ));
     }
 
-
-
+    //endregion
 
 }

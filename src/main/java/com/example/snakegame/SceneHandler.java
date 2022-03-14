@@ -2,17 +2,13 @@ package com.example.snakegame;
 
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
-import javafx.scene.SnapshotParameters;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Screen;
 
 import java.io.File;
-import java.util.ArrayList;
 
 
 public class SceneHandler {
@@ -27,10 +23,6 @@ public class SceneHandler {
         return mapY;
     }
 
-    public static int getTileSize() {
-        return tileSize;
-    }
-
     public static boolean hasInput() {
         return input;
     }
@@ -41,7 +33,7 @@ public class SceneHandler {
 
     //endregion
 
-    //region [Variables]
+    //region [Class Variables]
 
     private static Rectangle2D screenBounds = Screen.getPrimary().getBounds();
     private static double screenX = screenBounds.getMaxX();
@@ -67,14 +59,13 @@ public class SceneHandler {
         // Set the background
         pane.setBackground(ImageHandler.getBackground(0));
 
-
-
+        // Set the scene
         scene = new Scene(pane,420,400);
 
+        // Set the style of the scene to the css file
         scene.getStylesheets().add(new File("src/main/resources/fontstyle.css").toURI().toString());
 
-
-
+        // The Headline
         Label label = new Label();
         label.setText("Snake4Ever");
         label.setScaleX(2);
@@ -84,7 +75,7 @@ public class SceneHandler {
         label.setLayoutY(25);
         pane.getChildren().add(label);
 
-
+        // The start button
         Button buttonStart = new Button();
         buttonStart.setText("Start");
         buttonStart.setScaleX(2);
@@ -92,10 +83,9 @@ public class SceneHandler {
         buttonStart.setMinWidth(100);
         buttonStart.setLayoutX(160);
         buttonStart.setLayoutY(90);
-
+        // The action of the start button
         buttonStart.setOnAction(actionEvent -> {
             try {
-
                 // Stop menu music
                 SoundHandler.stopMenuBackgroundMusic();
 
@@ -115,10 +105,9 @@ public class SceneHandler {
                 System.out.println(e.getMessage());
             }
         });
-
         pane.getChildren().add(buttonStart);
 
-
+        // The Leaderboard button
         Button buttonLead = new Button();
         buttonLead.setText("Leaderboard");
         buttonLead.setScaleX(2);
@@ -126,10 +115,9 @@ public class SceneHandler {
         buttonLead.setMinWidth(100);
         buttonLead.setLayoutX(160);
         buttonLead.setLayoutY(150);
-
+        // The action of the leaderboard button
         buttonLead.setOnAction(actionEvent -> {
             try {
-
                 // Change scene
                 setSceneLeaderboard();
 
@@ -140,10 +128,9 @@ public class SceneHandler {
                 System.out.println(e.getMessage());
             }
         });
-
         pane.getChildren().add(buttonLead);
 
-
+        // The options button
         Button buttonOptions = new Button();
         buttonOptions.setText("Settings");
         buttonOptions.setScaleX(2);
@@ -151,11 +138,10 @@ public class SceneHandler {
         buttonOptions.setMinWidth(100);
         buttonOptions.setLayoutX(160);
         buttonOptions.setLayoutY(210);
-
+        // The action of the option button
         buttonOptions.setOnAction(actionEvent -> {
             try {
-
-                // -
+                // Set the scene to the settings scene
                 SceneHandler.setSettingsScene();
 
                 // Play button sound
@@ -165,11 +151,9 @@ public class SceneHandler {
                 System.out.println(e.getMessage());
             }
         });
-
         pane.getChildren().add(buttonOptions);
 
-
-
+        // The exit button
         Button buttonExit = new Button();
         buttonExit.setText("Exit");
         buttonExit.setScaleX(2);
@@ -177,10 +161,9 @@ public class SceneHandler {
         buttonExit.setMinWidth(100);
         buttonExit.setLayoutX(160);
         buttonExit.setLayoutY(330);
-
+        // The action of the exit button
         buttonExit.setOnAction(actionEvent -> {
             try {
-
                 // Close the program
                 System.exit(0);
 
@@ -188,15 +171,15 @@ public class SceneHandler {
                 System.out.println(e.getMessage());
             }
         });
-
         pane.getChildren().add(buttonExit);
 
-
+        // Set the current scene to this one
         SnakeGame.setScene(scene);
 
+        // Set the location of the scene to the middle for a menu scene
         setSceneLocation(false);
 
-
+        // Start the menu music
         SoundHandler.startMenuBackgroundMusic();
 
     }
@@ -208,15 +191,19 @@ public class SceneHandler {
 
     public static void setSceneLeaderboard(){
 
+        // The root
         Pane pane = new Pane();
 
         // Set the background
         pane.setBackground(ImageHandler.getBackground(1));
 
+        // Set the scene with the root
         scene = new Scene(pane,420,400);
 
+        // Get the styleing from the css file
         scene.getStylesheets().add(new File("src/main/resources/fontstyle.css").toURI().toString());
 
+        // The headline
         Label label = new Label();
         label.setText("Leaderboard");
         label.setStyle("-fx-font-weight: bold");
@@ -227,18 +214,16 @@ public class SceneHandler {
         label.setLayoutY(25);
         pane.getChildren().add(label);
 
-
         // Refresh data
         ScoreHandler.getData();
 
+        // Creating a TableView with the scores in the saveFile
         TableView leaderboardTbl = ScoreHandler.getLeaderboard();
 
+        // Adding the TableView to the scene
         pane.getChildren().add(leaderboardTbl);
 
-
-
-
-
+        // The delete button
         Button buttonDelete = new Button();
         buttonDelete.setText("Delete Selected");
         buttonDelete.setScaleX(1.5);
@@ -246,7 +231,7 @@ public class SceneHandler {
         buttonDelete.setMinWidth(100);
         buttonDelete.setLayoutX(80);
         buttonDelete.setLayoutY(280);
-
+        // The action of the delete button
         buttonDelete.setOnAction(actionEvent -> {
             try {
 
@@ -267,11 +252,9 @@ public class SceneHandler {
                 e.printStackTrace();
             }
         });
-
         pane.getChildren().add(buttonDelete);
 
-
-
+        // The clear button
         Button buttonClear = new Button();
         buttonClear.setText("Clear Board");
         buttonClear.setScaleX(1.5);
@@ -279,10 +262,9 @@ public class SceneHandler {
         buttonClear.setMinWidth(100);
         buttonClear.setLayoutX(240);
         buttonClear.setLayoutY(280);
-
+        // The action of the clear button
         buttonClear.setOnAction(actionEvent -> {
             try {
-
                 // Clear the leaderboard
                 ScoreHandler.clearData();
 
@@ -296,12 +278,9 @@ public class SceneHandler {
                 e.printStackTrace();
             }
         });
-
         pane.getChildren().add(buttonClear);
 
-
-
-        
+        // The menu button
         Button buttonMenu = new Button();
         buttonMenu.setText("Back to Menu");
         buttonMenu.setScaleX(2);
@@ -309,10 +288,9 @@ public class SceneHandler {
         buttonMenu.setMinWidth(100);
         buttonMenu.setLayoutX(160);
         buttonMenu.setLayoutY(330);
-
+        // The action of the menu button
         buttonMenu.setOnAction(actionEvent -> {
             try {
-
                 // Change scene to menu
                 setSceneMenu();
 
@@ -329,14 +307,12 @@ public class SceneHandler {
                 e.printStackTrace();
             }
         });
-
         pane.getChildren().add(buttonMenu);
 
-
-
-
+        // Set the screens position to the middle of the screen
         setSceneLocation(false);
 
+        // Set the current scene to this one
         SnakeGame.setScene(scene);
 
     }
@@ -500,7 +476,7 @@ public class SceneHandler {
                 fourButtonOption = fourButtonControlCheck.isSelected();
 
                 // Set boolean to the users chosen value for wether or not the powerups are there
-                GameEngine.powerUpEnabled = fourButtonControlCheck.isSelected();
+                GameEngine.powerUpEnabled = powerUpCheck.isSelected();
 
                 // Set boolean to the users chosen value for wether or not it is just color mode
                 GameEngine.justColor = colorOnlyCheck.isSelected();
@@ -529,11 +505,11 @@ public class SceneHandler {
 
                 System.out.println(e.getMessage());
 
-                textFieldMapX.setText("");
-                textFieldMapY.setText("");
+                // Reset the two textFields
+                textFieldMapX.setText("20");
+                textFieldMapY.setText("20");
             }
         });
-
         pane.getChildren().add(buttonSaveBack);
 
         // The current scene is changed to the new one
@@ -551,17 +527,23 @@ public class SceneHandler {
 
     public static void setSceneGame(){
 
+        // The root & set background to black
         Pane pane = new Pane();
         pane.setStyle("-fx-background-color: Black");
 
+        // Create the game canvas
         canvas = new Canvas(mapX*tileSize,mapY*tileSize);
 
+        // Add the canvas to the root
         pane.getChildren().add(canvas);
 
+        // Create the scene with the root
         scene = new Scene(pane,mapX*tileSize,mapY*tileSize);
 
+        // Set the current scene to this one
         SnakeGame.setScene(scene);
 
+        // Start the game music
         SoundHandler.startGameBackgroundMusic();
 
     }
@@ -573,16 +555,19 @@ public class SceneHandler {
 
     public static void setSceneDead(){
 
+        // The root
         Pane pane = new Pane();
 
         // Set the background
         pane.setBackground(ImageHandler.getBackground(3));
 
+        // Create the scene with the root
         scene = new Scene(pane,420,400);
 
         // Set stylesheet
         scene.getStylesheets().add(new File("src/main/resources/fontstyle.css").toURI().toString());
 
+        // The Headline
         Label label = new Label();
         label.setText("Game Over");
         label.setStyle("-fx-font-weight: bold");
@@ -593,6 +578,7 @@ public class SceneHandler {
         label.setLayoutY(25);
         pane.getChildren().add(label);
 
+        // The point label
         Label labelPoints = new Label();
         labelPoints.setText("Points: "+ScoreHandler.getScore());
         labelPoints.setScaleX(1.5);
@@ -600,7 +586,6 @@ public class SceneHandler {
         labelPoints.setLayoutX(190);
         labelPoints.setLayoutY(90);
         pane.getChildren().add(labelPoints);
-
 
         // The username section
         Label labelUsername = new Label();
@@ -618,7 +603,7 @@ public class SceneHandler {
         pane.getChildren().add(labelUsername);
         pane.getChildren().add(textFieldUsername);
 
-
+        // The save button
         Button buttonSave = new Button();
         buttonSave.setText("Save");
         buttonSave.setScaleX(2);
@@ -626,7 +611,7 @@ public class SceneHandler {
         buttonSave.setMinWidth(100);
         buttonSave.setLayoutX(160);
         buttonSave.setLayoutY(210);
-
+        // The action of the save button
         buttonSave.setOnAction(actionEvent -> {
             try {
                 // Save the score with the chosen username or '-' if it is empty
@@ -648,10 +633,9 @@ public class SceneHandler {
                 System.out.println(e.getMessage());
             }
         });
-
         pane.getChildren().add(buttonSave);
 
-
+        // The again button
         Button buttonAgain = new Button();
         buttonAgain.setText("Again");
         buttonAgain.setScaleX(2);
@@ -659,10 +643,9 @@ public class SceneHandler {
         buttonAgain.setMinWidth(100);
         buttonAgain.setLayoutX(160);
         buttonAgain.setLayoutY(270);
-
+        // The action of the again button
         buttonAgain.setOnAction(actionEvent -> {
             try {
-
                 // Set window location
                 setSceneLocation(true);
 
@@ -682,10 +665,9 @@ public class SceneHandler {
                 System.out.println(e.getMessage());
             }
         });
-
         pane.getChildren().add(buttonAgain);
 
-
+        // The menu button
         Button buttonMenu = new Button();
         buttonMenu.setText("Back to Menu");
         buttonMenu.setScaleX(2);
@@ -693,10 +675,9 @@ public class SceneHandler {
         buttonMenu.setMinWidth(100);
         buttonMenu.setLayoutX(160);
         buttonMenu.setLayoutY(330);
-
+        // The action of the menu button
         buttonMenu.setOnAction(actionEvent -> {
             try {
-
                 // Change scene to menu
                 setSceneMenu();
 
@@ -713,22 +694,18 @@ public class SceneHandler {
                 System.out.println(e.getMessage());
             }
         });
-
         pane.getChildren().add(buttonMenu);
 
-
-
-
-
-
-
+        // Set the location of the window so it is in the middle
         setSceneLocation(false);
 
+        // Set the current scene to this one
         SnakeGame.setScene(scene);
 
-
+        // Stop the game music
         SoundHandler.stopGameBackgroundMusic();
 
+        // Start the dead music
         SoundHandler.startDeadBackgroundMusic();
     }
 
@@ -736,9 +713,13 @@ public class SceneHandler {
 
     //endregion
 
-
     //region [Other Methods]
 
+    /**
+     * <Strong>This is used for setting the scenes size</Strong>
+     * @param mapX is the maps x in tiles
+     * @param mapY is the maps y in tiles
+     */
     public static void setSceneSize(int mapX, int mapY){
 
         SceneHandler.mapX =mapX;
@@ -746,6 +727,10 @@ public class SceneHandler {
 
     }
 
+    /**
+     * <Strong>This is used for setting the stages location</Strong>
+     * @param gameOn is the boolean of wether or not the game is going on
+     */
     public static void setSceneLocation(boolean gameOn){
 
         if (gameOn){
@@ -759,6 +744,10 @@ public class SceneHandler {
     private static boolean input=false;
     private static boolean fourButtonOption = true;
 
+    /**
+     *
+     * @param snake
+     */
     public static void setButtons(Snake snake){
 
         if (fourButtonOption){

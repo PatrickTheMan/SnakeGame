@@ -4,6 +4,8 @@ import java.util.Random;
 
 public class PowerUpHandler {
 
+    //region [Power Blue]
+
     public static void flipMapPower(Snake snake, Food food, int mapX, int mapY){
 
         Random r = new Random();
@@ -147,7 +149,8 @@ public class PowerUpHandler {
                 break;
         }
 
-
     }
+
+    //endregion
 
 }

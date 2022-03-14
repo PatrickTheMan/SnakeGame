@@ -1,6 +1,5 @@
 package com.example.snakegame;
 
-import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -8,14 +7,30 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import java.io.File;
 import java.io.FileWriter;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class ScoreHandler {
 
+    //region [Class Variables]
+
     private static int score=0;
     private static ArrayList<ArrayList<String>> leaderboard;
 
+    //endregion
+
+    //region [Getters & Setters]
+
+    public static void setScore(int snakeScore){
+        score = snakeScore;
+    }
+
+    public static int getScore(){
+        return score;
+    }
+
+    //endregion
+
+    //region [Try for file Method]
 
     private static void tryForFile(){
 
@@ -32,13 +47,66 @@ public class ScoreHandler {
 
     }
 
-    public static void setScore(int snakeScore){
-        score = snakeScore;
+    //endregion
+
+    //region [Data Methods]
+
+    public static void getData(){
+
+        // Try for file and create one if it doesn't find it
+        tryForFile();
+
+        // Initiate leaderboard or reset if already active
+        leaderboard = new ArrayList<>();
+
+        try {
+
+            File savefile = new File("src/main/resources/saveFile.txt");
+            Scanner scanner = new Scanner(savefile);
+
+            while (scanner.hasNextLine()){
+
+                ArrayList<String> arrayList = new ArrayList<>();
+
+                String dataName = scanner.nextLine();
+                String dataScore = scanner.nextLine();
+
+                arrayList.add(dataName);
+                arrayList.add(dataScore);
+
+                leaderboard.add(arrayList);
+            }
+
+            scanner.close();
+
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
-    public static int getScore(){
-        return score;
+    public static void clearData(){
+
+        // Try for file and create one if it doesn't find it
+        tryForFile();
+
+        // Initiate leaderboard or reset if already active
+        leaderboard = new ArrayList<>();
+
+        try {
+
+            FileWriter writer = new FileWriter("src/main/resources/saveFile.txt");
+
+            writer.close();
+
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
+
+    //endregion
+
+    //region [Score Methods]
 
     public static void saveScore(String username){
 
@@ -127,58 +195,9 @@ public class ScoreHandler {
 
     }
 
-    public static void getData(){
+    //endregion
 
-        // Try for file and create one if it doesn't find it
-        tryForFile();
-
-        // Initiate leaderboard or reset if already active
-        leaderboard = new ArrayList<>();
-
-        try {
-
-            File savefile = new File("src/main/resources/saveFile.txt");
-            Scanner scanner = new Scanner(savefile);
-
-            while (scanner.hasNextLine()){
-
-                ArrayList<String> arrayList = new ArrayList<>();
-
-                String dataName = scanner.nextLine();
-                String dataScore = scanner.nextLine();
-
-                arrayList.add(dataName);
-                arrayList.add(dataScore);
-
-                leaderboard.add(arrayList);
-            }
-
-            scanner.close();
-
-        } catch (Exception e){
-            e.printStackTrace();
-        }
-    }
-
-    public static void clearData(){
-
-        // Try for file and create one if it doesn't find it
-        tryForFile();
-
-        // Initiate leaderboard or reset if already active
-        leaderboard = new ArrayList<>();
-
-        try {
-
-            FileWriter writer = new FileWriter("src/main/resources/saveFile.txt");
-
-            writer.close();
-
-        } catch (Exception e){
-            e.printStackTrace();
-        }
-
-    }
+    //region [getLeaderboard Method]
 
     public static TableView getLeaderboard(){
 
@@ -212,5 +231,6 @@ public class ScoreHandler {
         return tableView;
     }
 
+    //endregion
 
 }

@@ -9,10 +9,16 @@ import java.io.File;
 
 public class SoundHandler {
 
+    //region [Class variables (Start/Stop)]
+
     public static int masterVolume = 3;
     public static boolean mute = false;
 
     public static MediaPlayer gameBackgroundMusic;
+
+    //endregion
+
+    //region [GameMusic Methods (Start/Stop)]
 
     public static void stopGameBackgroundMusic(){
 
@@ -41,6 +47,10 @@ public class SoundHandler {
             gameBackgroundMusic.play();
         }
     }
+
+    //endregion
+
+    //region [MenuMusic Methods (Start/Stop)]
 
     public static MediaPlayer menuBackgroundMusic;
 
@@ -74,6 +84,10 @@ public class SoundHandler {
 
     }
 
+    //endregion
+
+    //region [DeadMusic (Start/Stop)]
+
     public static MediaPlayer deadBackgroundMusic;
 
     public static void stopDeadBackgroundMusic(){
@@ -106,6 +120,10 @@ public class SoundHandler {
 
     }
 
+    //endregion
+
+    //region [FoodSound Method]
+
     public static MediaPlayer foodSound;
 
     public static void playFoodSound(Color color){
@@ -132,6 +150,10 @@ public class SoundHandler {
 
     }
 
+    //endregion
+
+    //region [CollisionSound Method]
+
     public static MediaPlayer collisionSound;
 
     public static void playCollisionSound(){
@@ -148,6 +170,10 @@ public class SoundHandler {
 
         collisionSound.play();
     }
+
+    //endregion
+
+    //region [SpeedUpSound Method]
 
     public static MediaPlayer speedUpSound;
 
@@ -166,6 +192,10 @@ public class SoundHandler {
         speedUpSound.play();
     }
 
+    //endregion
+
+    //region [ButtonSound Method]
+
     public static MediaPlayer buttonSound;
 
     public static void playButtonSound(){
@@ -182,5 +212,7 @@ public class SoundHandler {
 
         buttonSound.play();
     }
+
+    //endregion
 
 }

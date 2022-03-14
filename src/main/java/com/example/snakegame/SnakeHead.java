@@ -2,9 +2,15 @@ package com.example.snakegame;
 
 public class SnakeHead extends SnakePart {
 
+    //region [Constructor]
+
     public SnakeHead(){
         setDir(dir.right);
     }
+
+    //endregion
+
+    //region [Move Method]
 
     public void moveToNextTile(){
 
@@ -19,6 +25,10 @@ public class SnakeHead extends SnakePart {
         }
 
     }
+
+    //endregion
+
+    //region [Collision Methods]
 
     public boolean collisionWallCheck(int mapX, int mapY){
 
@@ -40,6 +50,10 @@ public class SnakeHead extends SnakePart {
         return false;
     }
 
+    //endregion
+
+    //region [Eat Food Method]
+
     public boolean eatFood(Food food){
 
         if (getX() == food.getX() && getY() == food.getY()){
@@ -49,5 +63,6 @@ public class SnakeHead extends SnakePart {
         return false;
     }
 
+    //endregion
 
 }
