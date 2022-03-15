@@ -134,6 +134,8 @@ public class GameEngine extends AnimationTimer {
 
     public static boolean justColor=false;
 
+    public static boolean inputDelay=false;
+
     boolean rotateNow=false;
 
     boolean multiHead = false;
@@ -147,11 +149,16 @@ public class GameEngine extends AnimationTimer {
         // Increment the timer
         updateTimer++;
 
+        // Reset input if there has been one
+        if (SceneHandler.hasInput() && !inputDelay){
+            SceneHandler.setInput(false);
+        }
+
         // If the timer hits the specified amount, then the games code runs
         if (updateTimer==11-speed){
 
             // Reset input if there has been one
-            if (SceneHandler.hasInput()){
+            if (SceneHandler.hasInput() && inputDelay){
                 SceneHandler.setInput(false);
             }
 

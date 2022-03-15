@@ -410,7 +410,11 @@ public class SceneHandler {
         powerUpCheck.setScaleX(1.5);
         powerUpCheck.setScaleY(1.5);
         powerUpCheck.setLayoutX(138);
-        powerUpCheck.setLayoutY(180);
+        powerUpCheck.setLayoutY(170);
+        // The action of the powerUp checkbox
+        powerUpCheck.setOnAction(actionEvent -> {
+            SoundHandler.playButtonSound();
+        });
         pane.getChildren().add(powerUpCheck);
 
         // The buttonControl option
@@ -420,7 +424,11 @@ public class SceneHandler {
         fourButtonControlCheck.setScaleX(1.5);
         fourButtonControlCheck.setScaleY(1.5);
         fourButtonControlCheck.setLayoutX(150);
-        fourButtonControlCheck.setLayoutY(210);
+        fourButtonControlCheck.setLayoutY(200);
+        // The action of the buttonControl checkbox
+        fourButtonControlCheck.setOnAction(actionEvent -> {
+            SoundHandler.playButtonSound();
+        });
         pane.getChildren().add(fourButtonControlCheck);
 
         // The colorOnly option
@@ -430,19 +438,40 @@ public class SceneHandler {
         colorOnlyCheck.setScaleX(1.5);
         colorOnlyCheck.setScaleY(1.5);
         colorOnlyCheck.setLayoutX(138);
-        colorOnlyCheck.setLayoutY(240);
+        colorOnlyCheck.setLayoutY(230);
+        // The action of the colorOnly checkbox
+        colorOnlyCheck.setOnAction(actionEvent -> {
+            SoundHandler.playButtonSound();
+        });
         pane.getChildren().add(colorOnlyCheck);
 
-        // The soundOn option
+        // The inputDelay option
+        CheckBox inputDelayCheck = new CheckBox();
+        inputDelayCheck.setText("Input delay");
+        inputDelayCheck.setSelected(GameEngine.inputDelay);
+        inputDelayCheck.setScaleX(1.5);
+        inputDelayCheck.setScaleY(1.5);
+        inputDelayCheck.setLayoutX(140);
+        inputDelayCheck.setLayoutY(260);
+        // The action of the  checkbox
+        inputDelayCheck.setOnAction(actionEvent -> {
+            SoundHandler.playButtonSound();
+        });
+        pane.getChildren().add(inputDelayCheck);
+
+        // The mute option
         CheckBox soundCheck = new CheckBox();
         soundCheck.setText("Mute Sound");
         soundCheck.setSelected(SoundHandler.mute);
         soundCheck.setScaleX(1.5);
         soundCheck.setScaleY(1.5);
         soundCheck.setLayoutX(141);
-        soundCheck.setLayoutY(270);
+        soundCheck.setLayoutY(290);
+        // The action of the mute checkbox
+        soundCheck.setOnAction(actionEvent -> {
+            SoundHandler.playButtonSound();
+        });
         pane.getChildren().add(soundCheck);
-
 
         // The save and back button
         Button buttonSaveBack = new Button();
@@ -482,6 +511,9 @@ public class SceneHandler {
 
                 // Set boolean to the users chosen value for wether or not it is just color mode
                 GameEngine.justColor = colorOnlyCheck.isSelected();
+
+                // Set boolean to the users chosen value for wether or not the input delay is present
+                GameEngine.inputDelay =inputDelayCheck.isSelected();
 
                 // Set boolean to the users chosen value for the mute sound
                 SoundHandler.mute = soundCheck.isSelected();

@@ -2,8 +2,11 @@ package com.example.snakegame;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+
+import java.io.File;
 
 /**
  * <Strong>This is the MAIN method, which extends the application obj</Strong>
@@ -52,6 +55,12 @@ public class SnakeGame extends Application {
 
             // The rule of not resizeable is set
             stage.setResizable(false);
+
+            // Set stage icon
+            stage.getIcons().add(new Image(new File("src/main/resources/Image/SnakeHead.png").toURI().toString()));
+
+            // Set stage name
+            stage.setTitle("Snake4Ever");
 
             // The stage is shown
             stage.show();
