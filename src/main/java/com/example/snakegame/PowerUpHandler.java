@@ -2,15 +2,29 @@ package com.example.snakegame;
 
 import java.util.Random;
 
+/**
+ * <Strong>This is for handling the different powerUps</Strong>
+ */
 public class PowerUpHandler {
 
     //region [Power Blue]
 
+    /**
+     * <Strong>This is used for the blue food's power, which flips the map</Strong>
+     * @param snake is the current snake
+     * @param food is the current food
+     * @param mapX is the current maps x in tiles
+     * @param mapY is the curent maps y in tiles
+     */
     public static void flipMapPower(Snake snake, Food food, int mapX, int mapY){
 
         Random r = new Random();
 
-
+        /* Randomly use the power with these 3 results
+        - Flip the map on the x
+        - Flip the map on the y
+        - Flip the map on the x & y
+         */
         switch (r.nextInt(0,3)){
             case 0:
 
@@ -149,6 +163,35 @@ public class PowerUpHandler {
                 break;
         }
 
+    }
+
+    //endregion
+
+    //region [Power Green]
+
+    public static void multiHeadPowerActive(Snake snake){
+
+        if (!snake.getSnakeHead().isMultiHead()){
+            snake.getSnakeHead().setMultiHead(true);
+        }
+
+    }
+
+    public static void multiHeadPowerDisable(Snake snake){
+
+        if (snake.getSnakeHead().isMultiHead()){
+            snake.getSnakeHead().setMultiHead(false);
+        }
+
+    }
+
+    //endregion
+
+    //region [Power Yellow]
+
+    public static void bonusFood(Snake snake){
+        snake.addSnakeBody();
+        snake.addSnakeBody();
     }
 
     //endregion

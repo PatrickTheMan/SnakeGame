@@ -7,6 +7,9 @@ import javafx.util.Duration;
 
 import java.io.File;
 
+/**
+ * <Strong>This is used for handling the different sounds</Strong>
+ */
 public class SoundHandler {
 
     //region [Class variables (Start/Stop)]
@@ -136,6 +139,22 @@ public class SoundHandler {
 
         if (color.equals(Color.BLUE)){
             sound = new Media(new File("src/main/resources/Sound/Creepy4.mp3").toURI().toString());
+
+            foodSound = new MediaPlayer(sound);
+
+            foodSound.setVolume(0.03 * masterVolume);
+        }
+
+        if (color.equals(Color.GREEN)){
+            sound = new Media(new File("src/main/resources/Sound/Bells11.mp3").toURI().toString());
+
+            foodSound = new MediaPlayer(sound);
+
+            foodSound.setVolume(0.02 * masterVolume);
+        }
+
+        if (color.equals(Color.YELLOW)){
+            sound = new Media(new File("src/main/resources/Sound/PowerUp4.mp3").toURI().toString());
 
             foodSound = new MediaPlayer(sound);
 

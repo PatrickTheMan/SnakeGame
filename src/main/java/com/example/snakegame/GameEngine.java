@@ -27,6 +27,9 @@ public class GameEngine extends AnimationTimer {
 
     //region [Constructor]
 
+    /**
+     * <Strong>This is used for creating a new gameEngine, which makes a new snake, new food and sets the buttons</Strong>
+     */
     public GameEngine(){
 
         // Create a new snake obj
@@ -54,6 +57,9 @@ public class GameEngine extends AnimationTimer {
 
     public static boolean powerUpEnabled=true;
 
+    /**
+     * <Strong>This is used for getting a new location and maybe a new type of food aswell</Strong>
+     */
     public static void newFood(){
         Random r = new Random();
         boolean canSpawn;
@@ -93,6 +99,10 @@ public class GameEngine extends AnimationTimer {
 
     //region [Handle Method]
 
+    /**
+     * <Strong>This is the loop, it gets repeated 60 times a sec</Strong>
+     * @param l
+     */
     @Override
     public void handle(long l) {
         // The Gameloop
@@ -109,7 +119,7 @@ public class GameEngine extends AnimationTimer {
      */
     public void speedUp(Snake snake){
         // Limits the speed amount to 9
-        if (speed!=9 && snake.getSnakeParts().size()%15==0){
+        if (speed!=9 && snake.getSnakeParts().size()%20==0){
             SoundHandler.playSpeedUp();
             speed++;
         }
@@ -126,6 +136,14 @@ public class GameEngine extends AnimationTimer {
 
     boolean rotateNow=false;
 
+    boolean multiHead = false;
+    int multiHeadTimer = 50;
+
+    boolean bonusFood=false;
+
+    /**
+     * <Strong>This is the main code of the gameLoop, this is all the code that gets run when the gameScene is active</Strong>
+     */
     private void gameLoop(){
 
         // Increment the timer
@@ -188,15 +206,37 @@ public class GameEngine extends AnimationTimer {
                     // It is blue
                     SoundHandler.playFoodSound(food.getColor());
                     rotateNow=true;
+                } else if (food.getColor().equals(Color.GREEN)){
+                    // It is green
+                    SoundHandler.playFoodSound(food.getColor());
+                    multiHead=true;
+                } else if (food.getColor().equals(Color.YELLOW)){
+                    // It is yellow
+                    SoundHandler.playFoodSound(food.getColor());
+                    // The food is golden
+                    PowerUpHandler.bonusFood(snake);
                 } else {
                     // It is red
                     SoundHandler.playFoodSound(food.getColor());
                 }
 
+                // New food as the old has been eaten
                 newFood();
             }
 
 
+            // activate multiHead and start the timer & End the multiHead when it is done
+            if (multiHead){
+                multiHeadTimer=49;
+                PowerUpHandler.multiHeadPowerActive(snake);
+                multiHead=false;
+            } else if (multiHeadTimer<50) {
+                multiHeadTimer--;
+                if (multiHeadTimer==0){
+                    multiHeadTimer=50;
+                    PowerUpHandler.multiHeadPowerDisable(snake);
+                }
+            }
 
             // Rotate the map
             if (rotateNow){

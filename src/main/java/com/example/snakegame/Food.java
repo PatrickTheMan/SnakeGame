@@ -70,8 +70,14 @@ public class Food {
         if (powerUp){
             Random r = new Random();
 
-            if (r.nextInt(0,100)>80){
+            int type = r.nextInt(0,100);
+
+            if (type>=85){
                 c = Color.BLUE;
+            } else if (type>=70){
+                c = Color.GREEN;
+            } else if (type>=65){
+                c = Color.YELLOW;
             } else {
                 c = Color.RED;
             }

@@ -1,5 +1,8 @@
 package com.example.snakegame;
 
+/**
+ * <Strong>This is the snakePart obj</Strong>
+ */
 public class SnakePart {
 
     //region [Getters & Setters]
@@ -12,6 +15,12 @@ public class SnakePart {
         return y;
     }
 
+    /**
+     * <Strong>This is for creation a snakePart</Strong>
+     * @param x is the x position given in tiles
+     * @param y is the y position given in tiles
+     * @param direction is the direction of the part
+     */
     public void setLocation(int x,int y, dir direction) {
         this.x = x;
         this.y = y;
@@ -39,6 +48,10 @@ public class SnakePart {
         this.left = left;
     }
 
+    /**
+     * <Strong>This is for setting the direction of the snakePart</Strong>
+     * @param input is the direction the snakePart will turn to
+     */
     public void setDir(Enum input){
 
         if (input.equals(dir.up)){

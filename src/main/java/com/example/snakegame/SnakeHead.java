@@ -1,6 +1,27 @@
 package com.example.snakegame;
 
+/**
+ * <Strong>This is the snakeHead obj, which extends the snakePart obj</Strong>
+ */
 public class SnakeHead extends SnakePart {
+
+    //region [Gettes & Setters]
+
+    public boolean isMultiHead() {
+        return multiHead;
+    }
+
+    public void setMultiHead(boolean fatHead) {
+        this.multiHead = fatHead;
+    }
+
+    //endregion
+
+    //region [Class variables]
+
+    boolean multiHead = false;
+
+    //endregion
 
     //region [Constructor]
 
@@ -12,6 +33,9 @@ public class SnakeHead extends SnakePart {
 
     //region [Move Method]
 
+    /**
+     * <Strong>This is for moving the snakeHead to the next tile, decided via the current direction</Strong>
+     */
     public void moveToNextTile(){
 
         if (getDir()==dir.up){
@@ -54,10 +78,36 @@ public class SnakeHead extends SnakePart {
 
     //region [Eat Food Method]
 
+    /**
+     * <Strong>This is for checking whether or not there is a food obj on the snakeHead's current position</Strong>
+     * @param food is the current food obj
+     * @return true if the snakeHead and food share position
+     */
     public boolean eatFood(Food food){
 
-        if (getX() == food.getX() && getY() == food.getY()){
-            return true;
+        // Is there multiHead?
+        if (multiHead){
+            // multiHead
+            switch (getDir()){
+                case up:
+                case down:
+                    if ((getX()-1 == food.getX() || getX() == food.getX() || getX()+1 == food.getX()) && getY() == food.getY()){
+                        return true;
+                    }
+                    break;
+                case right:
+                case left:
+                    if (getX() == food.getX() && (getY()-1 == food.getY() || getY() == food.getY() || getY()+1 == food.getY())){
+                        return true;
+                    }
+                    break;
+            }
+
+        } else {
+            // normalHead
+            if (getX() == food.getX() && getY() == food.getY()){
+                return true;
+            }
         }
 
         return false;

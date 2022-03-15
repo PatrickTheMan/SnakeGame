@@ -1,5 +1,8 @@
 package com.example.snakegame;
 
+/**
+ * <Strong>This is the score obj</Strong>
+ */
 public class Score {
 
    //region [Getter & Setters]

@@ -2,6 +2,9 @@ package com.example.snakegame;
 
 import java.util.ArrayList;
 
+/**
+ * <Strong>This is the snake obj</Strong>
+ */
 public class Snake {
 
     //region [Class variable]
@@ -36,6 +39,7 @@ public class Snake {
         int offSetX=0;
         int offSetY=0;
 
+        // Sets the direction of the snakes body, when created
         switch (snakeParts.get(snakeParts.size()-1).getDir()){
             case up:
                 offSetY=1;
@@ -51,6 +55,7 @@ public class Snake {
                 break;
         }
 
+        // Adds a new snakebody to the snake
         snakeParts.add(new SnakeBody(
                 getSnakeParts().get(getSnakeParts().size()-1).getX()+offSetX,
                 getSnakeParts().get(getSnakeParts().size()-1).getY()+offSetY,

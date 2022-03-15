@@ -10,7 +10,9 @@ import javafx.stage.Screen;
 
 import java.io.File;
 
-
+/**
+ * <Strong>This is used for handling the different scenes</Strong>
+ */
 public class SceneHandler {
 
     //region [Getters & Setters]
@@ -745,11 +747,12 @@ public class SceneHandler {
     private static boolean fourButtonOption = true;
 
     /**
-     *
-     * @param snake
+     *<Strong>This is used for setting the buttons which is used in the scene</Strong>
+     * @param snake is the current snake
      */
     public static void setButtons(Snake snake){
 
+        // Whether or not the buttonlayout is 4 arrows or 2
         if (fourButtonOption){
             scene.setOnKeyPressed(event -> {
                 switch (event.getCode()) {
@@ -831,13 +834,21 @@ public class SceneHandler {
 
     //region [Draw Canvas]
 
+    /**
+     * <Strong>This is used for drawing on the canvas, this one is the color only draw method</Strong>
+     * @param snake is the current snake
+     * @param food is the current food
+     */
     public static void drawCanvas(Snake snake, Food food){
 
+        // The clearing of the canvas
         canvas.getGraphicsContext2D().clearRect(0,0,mapX*tileSize,mapY*tileSize);
 
+        // The food gets drawn
         canvas.getGraphicsContext2D().setFill(food.getColor());
         canvas.getGraphicsContext2D().fillRect(food.getX()*tileSize,food.getY()*tileSize,tileSize,tileSize);
 
+        // The snakes body gets drawn
         canvas.getGraphicsContext2D().setFill(Color.YELLOW);
         for (int i = 1; i<snake.getSnakeParts().size();i++){
             canvas.getGraphicsContext2D().fillRect(
@@ -845,28 +856,57 @@ public class SceneHandler {
                     snake.getSnakeParts().get(i).getY()*tileSize, tileSize,tileSize)
             ;}
 
+        // The head gets drawn
         canvas.getGraphicsContext2D().setFill(Color.WHITE);
-        canvas.getGraphicsContext2D().fillRect(snake.getSnakeHead().getX()*tileSize,snake.getSnakeHead().getY()*tileSize,tileSize,tileSize);
+        if (snake.getSnakeHead().isMultiHead()){
+            // multiHead
+            if (snake.getSnakeHead().getDir().equals(SnakePart.dir.up)||snake.getSnakeHead().getDir().equals(SnakePart.dir.down)){
+                canvas.getGraphicsContext2D().fillRect(snake.getSnakeHead().getX()*tileSize-tileSize,snake.getSnakeHead().getY()*tileSize,tileSize*3,tileSize);
+            } else {
+                canvas.getGraphicsContext2D().fillRect(snake.getSnakeHead().getX()*tileSize,snake.getSnakeHead().getY()*tileSize-tileSize,tileSize,tileSize*3);
+            }
+        } else {
+            // normalHead
+            canvas.getGraphicsContext2D().fillRect(snake.getSnakeHead().getX()*tileSize,snake.getSnakeHead().getY()*tileSize,tileSize,tileSize);
+        }
 
     }
 
+    /**
+     * <Strong>This is for drawing on the canvas, this one is for the imgs</Strong>
+     * @param snake is the current snake
+     * @param food is the current food
+     */
     public static void drawCanvasIMG(Snake snake, Food food){
 
-
-        // Clear the screen
+        // Clear the canvas
         canvas.getGraphicsContext2D().drawImage(ImageHandler.getMapImg(),0,0);
 
-
+        // The food gets drawn
         canvas.getGraphicsContext2D().drawImage(ImageHandler.getFoodImg(food.getColor()),food.getX()*tileSize,food.getY()*tileSize);
 
+        // The snakes body gets drawn
         for (int i = 1; i<snake.getSnakeParts().size();i++){
-
-            canvas.getGraphicsContext2D().drawImage(ImageHandler.matchDirImg(snake,i),
+            canvas.getGraphicsContext2D().drawImage(ImageHandler.matchDirImg(snake,i,false),
                     snake.getSnakeParts().get(i).getX()*tileSize,
                     snake.getSnakeParts().get(i).getY()*tileSize, tileSize,tileSize);
         }
 
-        canvas.getGraphicsContext2D().drawImage(ImageHandler.matchDirImg(snake,0),snake.getSnakeHead().getX()*tileSize,snake.getSnakeHead().getY()*tileSize);
+        // The snakes head gets drawn
+        if (snake.getSnakeHead().isMultiHead()){
+            if (snake.getSnakeHead().getDir().equals(SnakePart.dir.up)||snake.getSnakeHead().getDir().equals(SnakePart.dir.down)){
+                canvas.getGraphicsContext2D().drawImage(ImageHandler.matchDirImg(snake,0,true),snake.getSnakeHead().getX()*tileSize-tileSize,snake.getSnakeHead().getY()*tileSize);
+                canvas.getGraphicsContext2D().drawImage(ImageHandler.matchDirImg(snake,0,false),snake.getSnakeHead().getX()*tileSize,snake.getSnakeHead().getY()*tileSize);
+                canvas.getGraphicsContext2D().drawImage(ImageHandler.matchDirImg(snake,0,true),snake.getSnakeHead().getX()*tileSize+tileSize,snake.getSnakeHead().getY()*tileSize);
+            } else {
+                canvas.getGraphicsContext2D().drawImage(ImageHandler.matchDirImg(snake,0,true),snake.getSnakeHead().getX()*tileSize,snake.getSnakeHead().getY()*tileSize-tileSize);
+                canvas.getGraphicsContext2D().drawImage(ImageHandler.matchDirImg(snake,0,false),snake.getSnakeHead().getX()*tileSize,snake.getSnakeHead().getY()*tileSize);
+                canvas.getGraphicsContext2D().drawImage(ImageHandler.matchDirImg(snake,0,true),snake.getSnakeHead().getX()*tileSize,snake.getSnakeHead().getY()*tileSize+tileSize);
+            }
+        } else {
+            canvas.getGraphicsContext2D().drawImage(ImageHandler.matchDirImg(snake,0,false),snake.getSnakeHead().getX()*tileSize,snake.getSnakeHead().getY()*tileSize);
+        }
+
 
     }
 
