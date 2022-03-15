@@ -137,9 +137,7 @@ public class GameEngine extends AnimationTimer {
     boolean rotateNow=false;
 
     boolean multiHead = false;
-    int multiHeadTimer = 50;
-
-    boolean bonusFood=false;
+    int multiHeadTimer = 60;
 
     /**
      * <Strong>This is the main code of the gameLoop, this is all the code that gets run when the gameScene is active</Strong>
@@ -227,13 +225,13 @@ public class GameEngine extends AnimationTimer {
 
             // activate multiHead and start the timer & End the multiHead when it is done
             if (multiHead){
-                multiHeadTimer=49;
+                multiHeadTimer=59;
                 PowerUpHandler.multiHeadPowerActive(snake);
                 multiHead=false;
-            } else if (multiHeadTimer<50) {
+            } else if (multiHeadTimer<60) {
                 multiHeadTimer--;
                 if (multiHeadTimer==0){
-                    multiHeadTimer=50;
+                    multiHeadTimer=60;
                     PowerUpHandler.multiHeadPowerDisable(snake);
                 }
             }

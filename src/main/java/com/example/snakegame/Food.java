@@ -74,9 +74,9 @@ public class Food {
 
             if (type>=85){
                 c = Color.BLUE;
-            } else if (type>=70){
+            } else if (type>=75){
                 c = Color.GREEN;
-            } else if (type>=65){
+            } else if (type>=70){
                 c = Color.YELLOW;
             } else {
                 c = Color.RED;
