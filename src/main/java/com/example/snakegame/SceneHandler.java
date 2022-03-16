@@ -881,26 +881,33 @@ public class SceneHandler {
         canvas.getGraphicsContext2D().fillRect(food.getX()*tileSize,food.getY()*tileSize,tileSize,tileSize);
 
         // The snakes body gets drawn
-        canvas.getGraphicsContext2D().setFill(Color.YELLOW);
+        if (snake.getSnakeHead().isPhantomMode()){
+            // phantomMode on
+            canvas.getGraphicsContext2D().setFill(Color.SALMON);
+        } else {
+            // phantomMode off
+            canvas.getGraphicsContext2D().setFill(Color.YELLOW);
+        }
+
         for (int i = 1; i<snake.getSnakeParts().size();i++){
             canvas.getGraphicsContext2D().fillRect(
                     snake.getSnakeParts().get(i).getX()*tileSize,
                     snake.getSnakeParts().get(i).getY()*tileSize, tileSize,tileSize)
             ;}
 
-        // The head gets drawn
-        canvas.getGraphicsContext2D().setFill(Color.WHITE);
+        // The headParts gets drawn
         if (snake.getSnakeHead().isMultiHead()){
-            // multiHead
+            // multiHeads gets drawn
+            canvas.getGraphicsContext2D().setFill(Color.SALMON);
             if (snake.getSnakeHead().getDir().equals(SnakePart.dir.up)||snake.getSnakeHead().getDir().equals(SnakePart.dir.down)){
                 canvas.getGraphicsContext2D().fillRect(snake.getSnakeHead().getX()*tileSize-tileSize,snake.getSnakeHead().getY()*tileSize,tileSize*3,tileSize);
             } else {
                 canvas.getGraphicsContext2D().fillRect(snake.getSnakeHead().getX()*tileSize,snake.getSnakeHead().getY()*tileSize-tileSize,tileSize,tileSize*3);
             }
-        } else {
-            // normalHead
-            canvas.getGraphicsContext2D().fillRect(snake.getSnakeHead().getX()*tileSize,snake.getSnakeHead().getY()*tileSize,tileSize,tileSize);
         }
+        // normalHead gets drawn
+        canvas.getGraphicsContext2D().setFill(Color.WHITE);
+        canvas.getGraphicsContext2D().fillRect(snake.getSnakeHead().getX()*tileSize,snake.getSnakeHead().getY()*tileSize,tileSize,tileSize);
 
     }
 
@@ -918,14 +925,25 @@ public class SceneHandler {
         canvas.getGraphicsContext2D().drawImage(ImageHandler.getFoodImg(food.getColor()),food.getX()*tileSize,food.getY()*tileSize);
 
         // The snakes body gets drawn
-        for (int i = 1; i<snake.getSnakeParts().size();i++){
-            canvas.getGraphicsContext2D().drawImage(ImageHandler.matchDirImg(snake,i,false),
-                    snake.getSnakeParts().get(i).getX()*tileSize,
-                    snake.getSnakeParts().get(i).getY()*tileSize, tileSize,tileSize);
+        if (snake.getSnakeHead().isPhantomMode()){
+            // Phantom mode on
+            for (int i = 1; i<snake.getSnakeParts().size();i++){
+                canvas.getGraphicsContext2D().drawImage(ImageHandler.matchDirImg(snake,i,true),
+                        snake.getSnakeParts().get(i).getX()*tileSize,
+                        snake.getSnakeParts().get(i).getY()*tileSize, tileSize,tileSize);
+            }
+        } else {
+            // Phantom mode off
+            for (int i = 1; i<snake.getSnakeParts().size();i++){
+                canvas.getGraphicsContext2D().drawImage(ImageHandler.matchDirImg(snake,i,false),
+                        snake.getSnakeParts().get(i).getX()*tileSize,
+                        snake.getSnakeParts().get(i).getY()*tileSize, tileSize,tileSize);
+            }
         }
 
         // The snakes head gets drawn
         if (snake.getSnakeHead().isMultiHead()){
+            // Multihead
             if (snake.getSnakeHead().getDir().equals(SnakePart.dir.up)||snake.getSnakeHead().getDir().equals(SnakePart.dir.down)){
                 canvas.getGraphicsContext2D().drawImage(ImageHandler.matchDirImg(snake,0,true),snake.getSnakeHead().getX()*tileSize-tileSize,snake.getSnakeHead().getY()*tileSize);
                 canvas.getGraphicsContext2D().drawImage(ImageHandler.matchDirImg(snake,0,false),snake.getSnakeHead().getX()*tileSize,snake.getSnakeHead().getY()*tileSize);
@@ -936,6 +954,7 @@ public class SceneHandler {
                 canvas.getGraphicsContext2D().drawImage(ImageHandler.matchDirImg(snake,0,true),snake.getSnakeHead().getX()*tileSize,snake.getSnakeHead().getY()*tileSize+tileSize);
             }
         } else {
+            // Normal head
             canvas.getGraphicsContext2D().drawImage(ImageHandler.matchDirImg(snake,0,false),snake.getSnakeHead().getX()*tileSize,snake.getSnakeHead().getY()*tileSize);
         }
 

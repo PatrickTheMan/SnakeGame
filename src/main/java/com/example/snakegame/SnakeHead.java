@@ -15,11 +15,21 @@ public class SnakeHead extends SnakePart {
         this.multiHead = fatHead;
     }
 
+    public boolean isPhantomMode() {
+        return phantomMode;
+    }
+
+    public void setPhantomMode(boolean phantomMode) {
+        this.phantomMode = phantomMode;
+    }
+
     //endregion
 
     //region [Class variables]
 
     boolean multiHead = false;
+
+    private boolean phantomMode = false;
 
     //endregion
 
@@ -65,10 +75,10 @@ public class SnakeHead extends SnakePart {
 
     public boolean collisionBodyCheck(SnakePart snakePart){
 
-
-
-        if (getX() == snakePart.getX() && getY() == snakePart.getY()){
-            return true;
+        if (!phantomMode){
+            if (getX() == snakePart.getX() && getY() == snakePart.getY()){
+                return true;
+            }
         }
 
         return false;

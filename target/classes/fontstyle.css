@@ -6,6 +6,9 @@
 .label {
     -fx-font-family: 'alagard';
     -fx-text-fill: RED;
+
+    -fx-background-color: BLACK;
+    -fx-padding: 2,2,2,2;
 }
 
 
@@ -13,28 +16,157 @@
     -fx-font-family: 'alagard';
     -fx-text-fill: RED;
 
+    -fx-background-color: transparent,black;
+
     -fx-border-color: RED;
     -fx-border-width: 0.5;
 
 }
 
+.button:hover{
+    -fx-font-family: 'alagard';
+    -fx-text-fill: BLUE;
+
+    -fx-border-color: BLUE;
+    -fx-border-width: 1;
+}
+
+.button:focused {
+    -fx-font-family: 'alagard';
+    -fx-text-fill: BLUE;
+
+    -fx-border-color: BLUE;
+    -fx-border-width: 1;
+}
+
+.button:pressed{
+    -fx-font-family: 'alagard';
+    -fx-text-fill: PINK;
+
+    -fx-border-color: PINK;
+    -fx-border-width: 1;
+}
+
 .check-box {
     -fx-font-family: 'alagard';
     -fx-text-fill: RED;
+
+    -fx-background-color: BLACK;
+
+    -fx-border-color: RED;
+    -fx-border-width: 0.5;
+}
+
+.check-box:hover{
+    -fx-font-family: 'alagard';
+    -fx-text-fill: BLUE;
+
+    -fx-border-color: BLUE;
+    -fx-border-width: 1;
+}
+
+.check-box:focused {
+    -fx-font-family: 'alagard';
+    -fx-text-fill: BLUE;
+
+    -fx-border-color: BLUE;
+    -fx-border-width: 1;
+}
+
+.check-box:pressed{
+    -fx-font-family: 'alagard';
+    -fx-text-fill: PINK;
+
+    -fx-border-color: PINK;
+    -fx-border-width: 1;
 }
 
 .text-field {
     -fx-font-family: 'alagard';
     -fx-text-fill: BLACK;
 
+    -fx-display-caret: false;
+
     -fx-border-color: RED;
     -fx-border-width: 0.5;
 }
 
-.table-view {
+.text-field:hover {
     -fx-font-family: 'alagard';
-    -fx-text-fill: BLACK;
+    -fx-text-fill: BLUE;
 
-    -fx-border-color: BLACK;
+    -fx-border-color: BLUE;
     -fx-border-width: 1;
 }
+
+.text-field:focused{
+    -fx-font-family: 'alagard';
+    -fx-text-fill: BLUE;
+
+    -fx-border-color: BLUE;
+    -fx-border-width: 1;
+}
+
+.text-field:pressed {
+    -fx-font-family: 'alagard';
+    -fx-text-fill: PINK;
+
+    -fx-border-color: PINK;
+    -fx-border-width: 1;
+}
+
+.table-view {
+    -fx-font-family: 'alagard';
+
+    -fx-background-color: BLACK;
+
+    -fx-border-color: RED;
+    -fx-border-width: 0.5;
+}
+
+
+
+.table-column {
+    -fx-font-family: 'alagard';
+
+    -fx-background-color: BLACK;
+
+    -fx-border-color: RED;
+    -fx-border-width: 0.5;
+}
+
+.table-row-cell {
+    -fx-font-family: 'alagard';
+    -fx-text-fill: RED;
+
+    -fx-background-color: BLACK;
+
+    -fx-border-color: RED;
+    -fx-border-width: 0.5;
+}
+
+.table-view .scroll-bar * {
+    -fx-min-width: 0;
+    -fx-pref-width: 0;
+    -fx-max-width: 0;
+
+    -fx-min-height: 0;
+    -fx-pref-height: 0;
+    -fx-max-height: 0;
+}
+
+.table-row-cell:hover {
+    -fx-border-color: BLUE;
+    -fx-border-width: 1;
+}
+
+.table-row-cell:selected {
+    -fx-border-color: BLUE;
+    -fx-border-width: 1;
+}
+
+.table-row-cell:pressed {
+    -fx-border-color: PINK;
+    -fx-border-width: 1;
+}
+

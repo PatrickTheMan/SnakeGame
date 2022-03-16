@@ -60,16 +60,56 @@ public class ImageHandler {
         foodCollection.add(new Image(new File("src/main/resources/Image/Bones Food Blue.png").toURI().toString()));
         foodCollection.add(new Image(new File("src/main/resources/Image/Bones Food Green.png").toURI().toString()));
         foodCollection.add(new Image(new File("src/main/resources/Image/Bones Food Yellow.png").toURI().toString()));
+        foodCollection.add(new Image(new File("src/main/resources/Image/Bones Food Pink.png").toURI().toString()));
 
         // Load the images for the normal snake
         Image snakeHead = new Image(new File("src/main/resources/Image/SnakeHead.png").toURI().toString());
         Image snakeBody = new Image(new File("src/main/resources/Image/SnakeBody.png").toURI().toString());
         Image snakeTail = new Image(new File("src/main/resources/Image/SnakeTail.png").toURI().toString());
+        Image snakeBodyTurn = new Image(new File("src/main/resources/Image/SnakeBody Turn.png").toURI().toString());
 
         // Load the images for the phantom snake
         Image snakePhantomHead = new Image(new File("src/main/resources/Image/SnakeHead Phantoms.png").toURI().toString());
         Image snakePhantomBody = new Image(new File("src/main/resources/Image/SnakeBody Phantoms.png").toURI().toString());
         Image snakePhantomTail = new Image(new File("src/main/resources/Image/SnakeTail Phantoms.png").toURI().toString());
+        Image snakePhantomBodyTurn = new Image(new File("src/main/resources/Image/SnakeBody Turn Phantoms.png").toURI().toString());
+
+        // Loading the normal snake img --------------------------------------------------------------------------------
+        // All snakeHead (0-3)
+        snakeNormalCollection.add(snakeHead);
+        createRotatedVersions(snakeHead);
+
+        // All snakeBody (4-7)
+        snakeNormalCollection.add(snakeBody);
+        createRotatedVersions(snakeBody);
+
+        // All snakeTail (8-11)
+        snakeNormalCollection.add(snakeTail);
+        createRotatedVersions(snakeTail);
+
+        // All snakeBodyTurn (12-15)
+        snakeNormalCollection.add(snakeBodyTurn);
+        createRotatedVersions(snakeBodyTurn);
+
+        // Loading the phantom snake img -------------------------------------------------------------------------------
+        // All snakeHead (16-19)
+        snakeNormalCollection.add(snakePhantomHead);
+        createRotatedVersions(snakePhantomHead);
+
+        // All snakeBody (20-23)
+        snakeNormalCollection.add(snakePhantomBody);
+        createRotatedVersions(snakePhantomBody);
+
+        // All snakeTail (24-27)
+        snakeNormalCollection.add(snakePhantomTail);
+        createRotatedVersions(snakePhantomTail);
+
+        // All snakeTail (28-31)
+        snakeNormalCollection.add(snakePhantomBodyTurn);
+        createRotatedVersions(snakePhantomBodyTurn);
+    }
+
+    private static void createRotatedVersions(Image image){
 
         // Create the temp imageView
         ImageView imageView = new ImageView();
@@ -78,35 +118,9 @@ public class ImageHandler {
         SnapshotParameters parameters = new SnapshotParameters();
         parameters.setFill(Color.TRANSPARENT);
 
+        // Set imageView
+        imageView.setImage(image);
 
-        // Loading the normal snake img --------------------------------------------------------------------------------
-        // All snakeHead (0-3)
-        imageView.setImage(snakeHead);
-        snakeNormalCollection.add(snakeHead);
-        for (int i = 0; i<=2; i++){
-
-            imageView.setRotate(90);
-
-            snakeNormalCollection.add(imageView.snapshot(parameters,null));
-
-            imageView.setImage(imageView.snapshot(parameters,null));
-        }
-
-        // All snakeBody (4-7)
-        imageView.setImage(snakeBody);
-        snakeNormalCollection.add(snakeBody);
-        for (int i = 0; i<=2; i++){
-
-            imageView.setRotate(90);
-
-            snakeNormalCollection.add(imageView.snapshot(parameters,null));
-
-            imageView.setImage(imageView.snapshot(parameters,null));
-        }
-
-        // All snakeTail (8-11)
-        imageView.setImage(snakeTail);
-        snakeNormalCollection.add(snakeTail);
         for (int i = 0; i <=2; i++){
 
             imageView.setRotate(90);
@@ -116,42 +130,6 @@ public class ImageHandler {
             imageView.setImage(imageView.snapshot(parameters,null));
         }
 
-        // Loading the phantom snake img -------------------------------------------------------------------------------
-        // All snakeHead (12-15)
-        imageView.setImage(snakePhantomHead);
-        snakeNormalCollection.add(snakePhantomHead);
-        for (int i = 0; i<=2; i++){
-
-            imageView.setRotate(90);
-
-            snakeNormalCollection.add(imageView.snapshot(parameters,null));
-
-            imageView.setImage(imageView.snapshot(parameters,null));
-        }
-
-        // All snakeBody (16-19)
-        imageView.setImage(snakePhantomBody);
-        snakeNormalCollection.add(snakePhantomBody);
-        for (int i = 0; i<=2; i++){
-
-            imageView.setRotate(90);
-
-            snakeNormalCollection.add(imageView.snapshot(parameters,null));
-
-            imageView.setImage(imageView.snapshot(parameters,null));
-        }
-
-        // All snakeTail (20-23)
-        imageView.setImage(snakePhantomTail);
-        snakeNormalCollection.add(snakePhantomTail);
-        for (int i = 0; i <=2; i++){
-
-            imageView.setRotate(90);
-
-            snakeNormalCollection.add(imageView.snapshot(parameters,null));
-
-            imageView.setImage(imageView.snapshot(parameters,null));
-        }
     }
 
     //endregion
@@ -213,6 +191,8 @@ public class ImageHandler {
             img = foodCollection.get(2);
         } else if (color.equals(Color.YELLOW)){
             img = foodCollection.get(3);
+        } else if (color.equals(Color.PINK)){
+            img = foodCollection.get(4);
         }
 
         return img;
@@ -238,22 +218,6 @@ public class ImageHandler {
                 // snakeHead img  phantom
                 switch (snake.getSnakeHead().getDir()) {
                     case up:
-                        img = snakeNormalCollection.get(12);
-                        break;
-                    case down:
-                        img = snakeNormalCollection.get(14);
-                        break;
-                    case right:
-                        img = snakeNormalCollection.get(13);
-                        break;
-                    case left:
-                        img = snakeNormalCollection.get(15);
-                        break;
-                }
-            } else if (location!=snake.getSnakeParts().size()-1){
-                // snakeBody middle part  phantom
-                switch (snake.getSnakeParts().get(location).getDir()) {
-                    case up:
                         img = snakeNormalCollection.get(16);
                         break;
                     case down:
@@ -266,20 +230,88 @@ public class ImageHandler {
                         img = snakeNormalCollection.get(19);
                         break;
                 }
+            } else if (location!=snake.getSnakeParts().size()-1){
+                // snakeBody middle part phantom
+                switch (snake.getSnakeParts().get(location).getDir()) {
+                    case up:
+                        if (snake.getSnakeParts().get(location+1).getDir() == snake.getSnakeParts().get(location).getDir()){
+                            // Normal snakeBody phantom
+                            img = snakeNormalCollection.get(20);
+                        } else {
+                            switch (snake.getSnakeParts().get(location+1).getDir()){
+                                // Turned snakeBody phantom
+                                case right:
+                                    img = snakeNormalCollection.get(30);
+                                    break;
+                                case left:
+                                    img = snakeNormalCollection.get(31);
+                                    break;
+                            }
+                        }
+                        break;
+                    case down:
+                        if (snake.getSnakeParts().get(location+1).getDir() == snake.getSnakeParts().get(location).getDir()){
+                            // Normal snakeBody phantom
+                            img = snakeNormalCollection.get(22);
+                        } else {
+                            switch (snake.getSnakeParts().get(location+1).getDir()){
+                                // Turned snakeBody phantom
+                                case right:
+                                    img = snakeNormalCollection.get(29);
+                                    break;
+                                case left:
+                                    img = snakeNormalCollection.get(28);
+                                    break;
+                            }
+                        }
+                        break;
+                    case right:
+                        if (snake.getSnakeParts().get(location+1).getDir() == snake.getSnakeParts().get(location).getDir()){
+                            // Normal snakeBody phantom
+                            img = snakeNormalCollection.get(21);
+                        } else {
+                            switch (snake.getSnakeParts().get(location+1).getDir()){
+                                // Turned snakeBody phantom
+                                case up:
+                                    img = snakeNormalCollection.get(28);
+                                    break;
+                                case down:
+                                    img = snakeNormalCollection.get(31);
+                                    break;
+                            }
+                        }
+                        break;
+                    case left:
+                        if (snake.getSnakeParts().get(location+1).getDir() == snake.getSnakeParts().get(location).getDir()){
+                            // Normal snakeBody phantom
+                            img = snakeNormalCollection.get(23);
+                        } else {
+                            switch (snake.getSnakeParts().get(location+1).getDir()){
+                                // Turned snakeBody phantom
+                                case up:
+                                    img = snakeNormalCollection.get(29);
+                                    break;
+                                case down:
+                                    img = snakeNormalCollection.get(30);
+                                    break;
+                            }
+                        }
+                        break;
+                }
             } else {
                 // snakeBody tail part phantom
                 switch (snake.getSnakeParts().get(location).getDir()) {
                     case up:
-                        img = snakeNormalCollection.get(20);
+                        img = snakeNormalCollection.get(24);
                         break;
                     case down:
-                        img = snakeNormalCollection.get(22);
+                        img = snakeNormalCollection.get(26);
                         break;
                     case right:
-                        img = snakeNormalCollection.get(21);
+                        img = snakeNormalCollection.get(25);
                         break;
                     case left:
-                        img = snakeNormalCollection.get(23);
+                        img = snakeNormalCollection.get(27);
                         break;
                 }
             }
@@ -305,16 +337,68 @@ public class ImageHandler {
                 // snakeBody middle part
                 switch (snake.getSnakeParts().get(location).getDir()) {
                     case up:
-                        img = snakeNormalCollection.get(4);
+                        if (snake.getSnakeParts().get(location+1).getDir() == snake.getSnakeParts().get(location).getDir()){
+                            // Normal snakeBody
+                            img = snakeNormalCollection.get(4);
+                        } else {
+                            switch (snake.getSnakeParts().get(location+1).getDir()){
+                                // Turned snakeBody
+                                case right:
+                                    img = snakeNormalCollection.get(14);
+                                    break;
+                                case left:
+                                    img = snakeNormalCollection.get(15);
+                                    break;
+                            }
+                        }
                         break;
                     case down:
-                        img = snakeNormalCollection.get(6);
+                        if (snake.getSnakeParts().get(location+1).getDir() == snake.getSnakeParts().get(location).getDir()){
+                            // Normal snakeBody
+                            img = snakeNormalCollection.get(6);
+                        } else {
+                            switch (snake.getSnakeParts().get(location+1).getDir()){
+                                // Turned snakeBody
+                                case right:
+                                    img = snakeNormalCollection.get(13);
+                                    break;
+                                case left:
+                                    img = snakeNormalCollection.get(12);
+                                    break;
+                            }
+                        }
                         break;
                     case right:
-                        img = snakeNormalCollection.get(5);
+                        if (snake.getSnakeParts().get(location+1).getDir() == snake.getSnakeParts().get(location).getDir()){
+                            // Normal snakeBody
+                            img = snakeNormalCollection.get(5);
+                        } else {
+                            switch (snake.getSnakeParts().get(location+1).getDir()){
+                                // Turned snakeBody
+                                case up:
+                                    img = snakeNormalCollection.get(12);
+                                    break;
+                                case down:
+                                    img = snakeNormalCollection.get(15);
+                                    break;
+                            }
+                        }
                         break;
                     case left:
-                        img = snakeNormalCollection.get(7);
+                        if (snake.getSnakeParts().get(location+1).getDir() == snake.getSnakeParts().get(location).getDir()){
+                            // Normal snakeBody
+                            img = snakeNormalCollection.get(7);
+                        } else {
+                            switch (snake.getSnakeParts().get(location+1).getDir()){
+                                // Turned snakeBody
+                                case up:
+                                    img = snakeNormalCollection.get(13);
+                                    break;
+                                case down:
+                                    img = snakeNormalCollection.get(14);
+                                    break;
+                            }
+                        }
                         break;
                 }
             } else {

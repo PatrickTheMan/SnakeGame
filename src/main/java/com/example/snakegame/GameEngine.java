@@ -119,7 +119,7 @@ public class GameEngine extends AnimationTimer {
      */
     public void speedUp(Snake snake){
         // Limits the speed amount to 9
-        if (speed!=9 && snake.getSnakeParts().size()%20==0){
+        if (speed!=9 && snake.getSnakeParts().size()%25==0){
             SoundHandler.playSpeedUp();
             speed++;
         }
@@ -140,6 +140,9 @@ public class GameEngine extends AnimationTimer {
 
     boolean multiHead = false;
     int multiHeadTimer = 60;
+
+    boolean phantomMode = false;
+    int phantomModeTimer = 60;
 
     /**
      * <Strong>This is the main code of the gameLoop, this is all the code that gets run when the gameScene is active</Strong>
@@ -218,8 +221,11 @@ public class GameEngine extends AnimationTimer {
                 } else if (food.getColor().equals(Color.YELLOW)){
                     // It is yellow
                     SoundHandler.playFoodSound(food.getColor());
-                    // The food is golden
                     PowerUpHandler.bonusFood(snake);
+                } else if (food.getColor().equals(Color.PINK)){
+                    // It is Pink
+                    SoundHandler.playFoodSound(food.getColor());
+                    phantomMode=true;
                 } else {
                     // It is red
                     SoundHandler.playFoodSound(food.getColor());
@@ -229,6 +235,18 @@ public class GameEngine extends AnimationTimer {
                 newFood();
             }
 
+            // activate multiHead and start the timer & End the multiHead when it is done
+            if (phantomMode){
+                phantomModeTimer=59;
+                PowerUpHandler.phantomPowerActive(snake);
+                phantomMode=false;
+            } else if (phantomModeTimer<60) {
+                phantomModeTimer--;
+                if (phantomModeTimer==0){
+                    phantomModeTimer=60;
+                    PowerUpHandler.phantomPowerDisable(snake);
+                }
+            }
 
             // activate multiHead and start the timer & End the multiHead when it is done
             if (multiHead){

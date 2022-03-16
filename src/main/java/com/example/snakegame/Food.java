@@ -78,6 +78,8 @@ public class Food {
                 c = Color.GREEN;
             } else if (type>=70){
                 c = Color.YELLOW;
+            } else if (type>=60){
+                c = Color.PINK;
             } else {
                 c = Color.RED;
             }

@@ -188,15 +188,11 @@ public class ScoreHandler {
 
                 if (scan.equals(username) && !foundScore){
 
-                    System.out.println(scan);
-
                     lines.add(scan);
 
                     scan = scanner.nextLine();
 
                     if (scan.equals(""+score)){
-
-                        System.out.println(scan);
 
                         lines.remove(lines.size()-1);
 
@@ -265,8 +261,9 @@ public class ScoreHandler {
         tableView.setLayoutY(60);
         tableView.setPrefSize(300,200);
 
-        usernameCol.setMinWidth(230);
-        scoreCol.setMinWidth(50);
+        // Set the collums minimum width
+        usernameCol.setMinWidth(236);
+        scoreCol.setMinWidth(60);
 
         // The finished leaderboard (tableView) gets returned
         return tableView;

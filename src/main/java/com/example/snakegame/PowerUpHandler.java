@@ -196,4 +196,24 @@ public class PowerUpHandler {
 
     //endregion
 
+    //region [Power Pink]
+
+    public static void phantomPowerActive(Snake snake){
+
+        if (!snake.getSnakeHead().isPhantomMode()){
+            snake.getSnakeHead().setPhantomMode(true);
+        }
+
+    }
+
+    public static void phantomPowerDisable(Snake snake){
+
+        if (snake.getSnakeHead().isPhantomMode()){
+            snake.getSnakeHead().setPhantomMode(false);
+        }
+
+    }
+
+    //endregion
+
 }

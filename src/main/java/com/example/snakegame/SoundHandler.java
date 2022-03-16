@@ -161,6 +161,14 @@ public class SoundHandler {
             foodSound.setVolume(0.03 * masterVolume);
         }
 
+        if (color.equals(Color.PINK)){
+            sound = new Media(new File("src/main/resources/Sound/PowerDown16.mp3").toURI().toString());
+
+            foodSound = new MediaPlayer(sound);
+
+            foodSound.setVolume(0.03 * masterVolume);
+        }
+
         if (mute){
             foodSound.setVolume(0);
         }
