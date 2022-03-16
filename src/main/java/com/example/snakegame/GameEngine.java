@@ -41,6 +41,8 @@ public class GameEngine extends AnimationTimer {
         // Set the scenes buttons to the chosen layout
         SceneHandler.setButtons(snake);
 
+        // Set the gameMap to a random one
+        ImageHandler.newMapImg();
     }
 
     //endregion

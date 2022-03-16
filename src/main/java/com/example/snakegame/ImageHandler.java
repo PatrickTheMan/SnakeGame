@@ -8,31 +8,17 @@ import javafx.scene.paint.Color;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * <Strong>This is for handling the different images</Strong>
  */
 public class ImageHandler {
 
-    //region [Getters & Setters]
-
-    public static ArrayList<Image> getFoodCollection() {
-        return foodCollection;
-    }
-
-    public static ArrayList<Image> getSnakeNormalCollection() {
-        return snakeNormalCollection;
-    }
-
-    public static Image getMapImg(){
-        return mapImg;
-    }
-
-    //endregion
-
     //region [Class variables]
 
     private static Image mapImg = null;
+    private static ArrayList<Image> mapCollection = new ArrayList<>();
     private static ArrayList<Image> backgroundMenu = new ArrayList<>();
     private static ArrayList<Image> foodCollection = new ArrayList<>();
     private static ArrayList<Image> snakeNormalCollection = new ArrayList<>();
@@ -53,7 +39,10 @@ public class ImageHandler {
         backgroundMenu.add(new Image(new File("src/main/resources/Image/SnakeBackgrounds Dead.png").toURI().toString()));
 
         // Load the background for the game
-        mapImg = new Image(new File("src/main/resources/Image/SnakeMap.png").toURI().toString());
+        mapCollection.add(new Image(new File("src/main/resources/Image/SnakeMap.png").toURI().toString()));
+        mapCollection.add(new Image(new File("src/main/resources/Image/SnakeMap Forrest.png").toURI().toString()));
+        mapCollection.add(new Image(new File("src/main/resources/Image/SnakeMap Frozen.png").toURI().toString()));
+        mapCollection.add(new Image(new File("src/main/resources/Image/SnakeMap Treasure.png").toURI().toString()));
 
         // Load the food img
         foodCollection.add(new Image(new File("src/main/resources/Image/Bones Food Red.png").toURI().toString()));
@@ -154,6 +143,36 @@ public class ImageHandler {
 
         return new Background(backgroundImage);
 
+    }
+
+    /**
+     * <Strong>This is used to get a new random map, from the collection</Strong>
+     */
+    public static void newMapImg(){
+
+        Random r = new Random();
+
+        int randomNum = r.nextInt(0,100);
+
+        if (randomNum>=95){
+            mapImg = mapCollection.get(3);
+        } else if (randomNum>=70){
+            mapImg = mapCollection.get(2);
+        } else if (randomNum>=65) {
+            mapImg = mapCollection.get(1);
+        } else {
+            mapImg = mapCollection.get(0);
+        }
+
+    }
+
+    /**
+     * <Strong>This is used for getting the current maps img</Strong>
+     * @return the image of the map
+     */
+    public static Image getMapImg(){
+
+        return mapImg;
     }
 
     /**
